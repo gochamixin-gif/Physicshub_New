@@ -20,7 +20,9 @@ let debounceTimer;
 
 export function initEvents() {
 
-    // --- Ввод в поиск ---
+    // ============================================================
+    // ВВОД В ПОИСК
+    // ============================================================
     document.addEventListener('input', e => {
         if (!e.target.classList.contains('site-search__input')) return;
 
@@ -37,10 +39,12 @@ export function initEvents() {
         }, 200);
     });
 
-    // --- Клики ---
+    // ============================================================
+    // КЛИКИ
+    // ============================================================
     document.addEventListener('click', e => {
 
-        // Логотип — на главную
+        // --- Логотип — на главную ---
         if (e.target.closest('#logoLink')) {
             e.preventDefault();
             const input = document.getElementById('search');
@@ -50,7 +54,7 @@ export function initEvents() {
             return;
         }
 
-        // Вкладки в шапке
+        // --- Вкладки в шапке ---
         const tab = e.target.closest('.site-tab');
         if (tab) {
             e.preventDefault();
@@ -61,6 +65,7 @@ export function initEvents() {
                 showTasks();
                 renderTasks();
             } else {
+                // articles
                 const input = document.getElementById('search');
                 if (input) input.value = '';
                 showHero();
@@ -68,7 +73,17 @@ export function initEvents() {
             return;
         }
 
-        // Случайная статья
+        // --- Кнопка «Справочник СИ» на главной ---
+        const ctaBtn = e.target.closest('[data-open-article]');
+        if (ctaBtn) {
+            e.preventDefault();
+            const id = ctaBtn.dataset.openArticle;
+            showArticle(id);
+            renderArticle(id);
+            return;
+        }
+
+        // --- 🎲 Случайная статья ---
         if (e.target.closest('#randomBtn')) {
             const item = getRandomArticle();
             if (!item) return;
@@ -77,7 +92,7 @@ export function initEvents() {
             return;
         }
 
-        // Карточка раздела
+        // --- Карточка раздела энциклопедии ---
         const sectionCard = e.target.closest('.section-card');
         if (sectionCard) {
             e.preventDefault();
@@ -97,7 +112,7 @@ export function initEvents() {
             return;
         }
 
-        // Открытие статьи
+        // --- Открытие статьи (результат поиска) ---
         const articleItem = e.target.closest('.result-item');
         if (articleItem) {
             e.preventDefault();
@@ -107,7 +122,7 @@ export function initEvents() {
             return;
         }
 
-        // Кнопка «Назад к поиску»
+        // --- Кнопка «Назад к поиску» в статье ---
         if (e.target.closest('#articleBack')) {
             const q = state.query || '';
             if (q) {
@@ -120,7 +135,7 @@ export function initEvents() {
             return;
         }
 
-        // Открытие задачи
+        // --- Открытие задачи из списка ---
         const taskItem = e.target.closest('.task-item');
         if (taskItem) {
             e.preventDefault();
@@ -130,7 +145,7 @@ export function initEvents() {
             return;
         }
 
-        // Кнопка «Назад к задачам»
+        // --- Кнопка «Назад к задачам» ---
         if (e.target.closest('#taskBackBtn')) {
             showTasks();
             renderTasks();

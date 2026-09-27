@@ -3,11 +3,12 @@
 // ============================================================
 
 // Введение в физику
-import { physicalTerms }        from './topics/physical-terms.js';
-import { scientificMethods }    from './topics/scientific-methods.js';
-import { physicalQuantities }   from './topics/physical-quantities.js';
-import { measurementAccuracy }  from './topics/measurement-accuracy.js';
-import { physicsInTechnology }  from './topics/physics-in-technology.js';
+import { siSystem }            from './topics/si-system.js';
+import { physicalTerms }       from './topics/physical-terms.js';
+import { scientificMethods }   from './topics/scientific-methods.js';
+import { physicalQuantities }  from './topics/physical-quantities.js';
+import { measurementAccuracy } from './topics/measurement-accuracy.js';
+import { physicsInTechnology } from './topics/physics-in-technology.js';
 
 // Строение вещества
 import { matterStructure }      from './topics/matter-structure.js';
@@ -76,6 +77,7 @@ import { gravity }              from './topics/gravity.js';
 
 export const database = [
     // Введение в физику
+    siSystem,
     physicalTerms,
     scientificMethods,
     physicalQuantities,

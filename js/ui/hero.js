@@ -85,6 +85,15 @@ function renderIntro() {
       <p class="intro__desc">
         От строения вещества до квантовой механики — понятно, с формулами и схемами
       </p>
+
+      <button class="intro-cta" data-open-article="si-system" type="button">
+        <span class="intro-cta__icon">📐</span>
+        <span class="intro-cta__text">
+          <span class="intro-cta__title">Справочник СИ</span>
+          <span class="intro-cta__hint">Все единицы, приставки и переводы в одной статье</span>
+        </span>
+        <span class="intro-cta__arrow">→</span>
+      </button>
     </section>
   `;
 }
