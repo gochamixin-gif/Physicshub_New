@@ -8,7 +8,7 @@ import { setActiveTab } from '../ui/hero.js';
 const $ = id => document.getElementById(id);
 
 // Все возможные экраны приложения
-const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView'];
+const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView', 'si'];
 
 /**
  * Скрывает все экраны
@@ -69,9 +69,20 @@ export function showTasks() {
  */
 export function showTaskView(id) {
     setView('taskView');
-    setArticle(id); // используем то же поле для id
+    setArticle(id);
     hideAll();
     $('taskView').classList.remove('hidden');
     setActiveTab('tasks');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/**
+ * Вкладка «СИ» — справочник
+ */
+export function showSi() {
+    setView('si');
+    hideAll();
+    $('si').classList.remove('hidden');
+    setActiveTab('si');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
