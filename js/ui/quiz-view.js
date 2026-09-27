@@ -1,8 +1,9 @@
 // ============================================================
-// ПРОХОЖДЕНИЕ ТЕСТА — с таймером
+// ПРОХОЖДЕНИЕ ТЕСТА — с таймером и сохранением результата
 // ============================================================
 
 import { getQuizById } from '../data/tasks/quizzes/index.js';
+import { saveQuizResult } from '../core/progress.js';
 import { arrowBackIcon } from '../icons.js';
 
 // Время по уровням сложности (в секундах)
@@ -18,9 +19,9 @@ let state = {
     current: 0,
     answers: [],
     checked: [],
-    timeLeft: 0,      // сколько осталось секунд
-    timerId: null,    // ID интервала
-    timeUp: false     // время вышло
+    timeLeft: 0,
+    timerId: null,
+    timeUp: false
 };
 
 function levelStars(level) {
@@ -67,7 +68,7 @@ function startTimer() {
 }
 
 /**
- * Обновляет только блок с таймером (без перерисовки всего)
+ * Обновляет блок таймера без перерисовки всего
  */
 function updateTimerDisplay() {
     const el = document.getElementById('quizTimer');
@@ -75,7 +76,6 @@ function updateTimerDisplay() {
 
     el.textContent = `⏱ ${formatTime(state.timeLeft)}`;
 
-    // Меняем цвет в зависимости от остатка
     el.classList.remove('quiz-timer--warn', 'quiz-timer--danger');
 
     if (state.timeLeft <= 20) {
@@ -86,7 +86,7 @@ function updateTimerDisplay() {
 }
 
 /**
- * Начать тест заново
+ * Начать тест
  */
 export function renderQuizView(quizId) {
     const quiz = getQuizById(quizId);
@@ -124,7 +124,6 @@ function renderCurrentQuestion() {
     const userAnswer = state.answers[state.current];
     const isChecked = state.checked[state.current];
 
-    // Определяем класс таймера
     let timerClass = 'quiz-timer';
     if (state.timeLeft <= 20) timerClass += ' quiz-timer--danger';
     else if (state.timeLeft <= 60) timerClass += ' quiz-timer--warn';
@@ -242,6 +241,8 @@ function renderResult(quiz) {
     stopTimer();
     const container = document.getElementById('quizView');
     const total = quiz.questions.length;
+
+    // Считаем правильные
     let correct = 0;
     quiz.questions.forEach((q, i) => {
         if (state.answers[i] === q.correct) correct++;
@@ -251,6 +252,14 @@ function renderResult(quiz) {
     // Время
     const totalTime = TIME_BY_LEVEL[quiz.level] || TIME_BY_LEVEL[1];
     const timeSpent = totalTime - state.timeLeft;
+
+    // Сохраняем результат
+    const saveInfo = saveQuizResult(quiz.id, {
+        correct,
+        total,
+        timeSpent,
+        timeUp: state.timeUp
+    });
 
     let medal, title, message;
     if (state.timeUp) {
@@ -284,6 +293,18 @@ function renderResult(quiz) {
       <div class="quiz-result">
         <div class="quiz-result__medal">${medal}</div>
         <h2 class="quiz-result__title">${title}</h2>
+
+        ${saveInfo.isNewRecord ? `
+          <div class="quiz-result__record">
+            🎯 Новый рекорд!
+          </div>
+        ` : saveInfo.previous ? `
+          <div class="quiz-result__record quiz-result__record--old">
+            Рекорд: ${saveInfo.previous.correct}/${saveInfo.previous.total}
+            · ${formatTime(saveInfo.previous.timeSpent)}
+          </div>
+        ` : ''}
+
         <div class="quiz-result__score">
           <span class="quiz-result__correct">${correct}</span>
           <span class="quiz-result__divider">/</span>

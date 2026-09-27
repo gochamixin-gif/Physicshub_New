@@ -7,8 +7,12 @@ import { setActiveTab } from '../ui/hero.js';
 
 const $ = id => document.getElementById(id);
 
-// Все экраны приложения
-const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView', 'quizzes', 'quizView'];
+const ALL_VIEWS = [
+    'hero', 'results', 'article',
+    'tasks', 'taskView',
+    'quizzes', 'quizView',
+    'labs', 'labView'
+];
 
 function hideAll() {
     ALL_VIEWS.forEach(id => {
@@ -78,5 +82,24 @@ export function showQuizView(id) {
     hideAll();
     $('quizView').classList.remove('hidden');
     setActiveTab('quizzes');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- Лабораторные ---
+
+export function showLabs() {
+    setView('labs');
+    hideAll();
+    $('labs').classList.remove('hidden');
+    setActiveTab('labs');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+export function showLabView(id) {
+    setView('labView');
+    setArticle(id);
+    hideAll();
+    $('labView').classList.remove('hidden');
+    setActiveTab('labs');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }

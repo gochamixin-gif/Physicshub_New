@@ -43,7 +43,7 @@ export function renderHeader() {
       <span class="site-logo__text">Phyzzy</span>
     </a>
 
-             <nav class="site-tabs" id="siteTabs">
+          <nav class="site-tabs" id="siteTabs">
       <button class="site-tab site-tab--active" data-tab="articles" type="button">
         <span class="site-tab__icon">📚</span>
         <span class="site-tab__text">Энциклопедия</span>
@@ -55,6 +55,10 @@ export function renderHeader() {
       <button class="site-tab" data-tab="quizzes" type="button">
         <span class="site-tab__icon">📝</span>
         <span class="site-tab__text">Тесты</span>
+      </button>
+      <button class="site-tab" data-tab="labs" type="button">
+        <span class="site-tab__icon">🔬</span>
+        <span class="site-tab__text">Лабораторные</span>
       </button>
     </nav>
 

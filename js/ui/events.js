@@ -9,7 +9,9 @@ import {
     showTasks,
     showTaskView,
     showQuizzes,
-    showQuizView
+    showQuizView,
+    showLabs,
+    showLabView
 } from '../core/router.js';
 import { renderResults, resetFilter } from './results.js';
 import { renderArticle } from './article.js';
@@ -17,6 +19,8 @@ import { renderTasks, resetTaskFilter } from './tasks.js';
 import { renderTaskView } from './task-view.js';
 import { renderQuizzes, resetQuizFilter } from './quizzes.js';
 import { renderQuizView } from './quiz-view.js';
+import { renderLabs, resetLabFilter } from './labs.js';
+import { renderLabView } from './lab-view.js';
 import { getRandomArticle } from './hero.js';
 import { state } from '../core/state.js';
 
@@ -48,7 +52,7 @@ export function initEvents() {
     // ============================================================
     document.addEventListener('click', e => {
 
-        // --- Логотип ---
+        // --- Логотип — на главную ---
         if (e.target.closest('#logoLink')) {
             e.preventDefault();
             const input = document.getElementById('search');
@@ -58,7 +62,9 @@ export function initEvents() {
             return;
         }
 
-        // --- Вкладки в шапке ---
+        // ============================================================
+        // ВКЛАДКИ В ШАПКЕ
+        // ============================================================
         const tab = e.target.closest('.site-tab');
         if (tab) {
             e.preventDefault();
@@ -72,6 +78,10 @@ export function initEvents() {
                 resetQuizFilter();
                 showQuizzes();
                 renderQuizzes();
+            } else if (name === 'labs') {
+                resetLabFilter();
+                showLabs();
+                renderLabs();
             } else {
                 // articles
                 const input = document.getElementById('search');
@@ -80,6 +90,10 @@ export function initEvents() {
             }
             return;
         }
+
+        // ============================================================
+        // ЭНЦИКЛОПЕДИЯ
+        // ============================================================
 
         // --- Кнопка «Справочник СИ» на главной ---
         const ctaBtn = e.target.closest('[data-open-article]');
@@ -143,6 +157,10 @@ export function initEvents() {
             return;
         }
 
+        // ============================================================
+        // ЗАДАЧИ
+        // ============================================================
+
         // --- Открытие задачи ---
         const taskItem = e.target.closest('.task-item');
         if (taskItem) {
@@ -160,6 +178,10 @@ export function initEvents() {
             return;
         }
 
+        // ============================================================
+        // ТЕСТЫ
+        // ============================================================
+
         // --- Открытие теста ---
         const quizItem = e.target.closest('.quiz-item');
         if (quizItem) {
@@ -174,6 +196,27 @@ export function initEvents() {
         if (e.target.closest('#quizBackBtn')) {
             showQuizzes();
             renderQuizzes();
+            return;
+        }
+
+        // ============================================================
+        // ЛАБОРАТОРНЫЕ
+        // ============================================================
+
+        // --- Открытие лабораторной ---
+        const labItem = e.target.closest('.lab-item');
+        if (labItem) {
+            e.preventDefault();
+            const id = labItem.dataset.labId;
+            showLabView(id);
+            renderLabView(id);
+            return;
+        }
+
+        // --- Кнопка «Назад к лабораторным» ---
+        if (e.target.closest('#labBackBtn')) {
+            showLabs();
+            renderLabs();
             return;
         }
     });

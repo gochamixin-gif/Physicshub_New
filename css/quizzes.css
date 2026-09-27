@@ -771,3 +771,152 @@
         font-size: 0.9rem;
     }
 }
+/* ============================================================
+   ОТМЕТКИ О ПРОХОЖДЕНИИ
+   ============================================================ */
+
+/* Заголовок карточки + бейдж */
+.quiz-item__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+
+/* Бейдж статуса */
+.quiz-item__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.quiz-item__status--none {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    color: var(--text-mute);
+}
+
+.quiz-item__status--perfect {
+    background: rgba(74, 222, 128, 0.15);
+    border: 1px solid rgba(74, 222, 128, 0.5);
+    color: #4ade80;
+}
+
+.quiz-item__status--partial {
+    background: rgba(255, 184, 77, 0.15);
+    border: 1px solid rgba(255, 184, 77, 0.5);
+    color: #ffb84d;
+}
+
+/* Карточка пройденного теста */
+.quiz-item--perfect {
+    border-color: rgba(74, 222, 128, 0.3);
+    background: rgba(74, 222, 128, 0.03);
+}
+
+.quiz-item--partial {
+    border-color: rgba(255, 184, 77, 0.3);
+    background: rgba(255, 184, 77, 0.03);
+}
+
+/* Рекорд в футере */
+.quiz-item__best {
+    font-size: 0.8rem;
+    color: var(--text-mute);
+    font-family: var(--font-mono);
+}
+
+/* ============================================================
+   СТАТИСТИКА В ИНТРО
+   ============================================================ */
+
+.quizzes-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(0, 242, 254, 0.04);
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+}
+
+.quizzes-stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quizzes-stats__value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent-2);
+    font-family: var(--font-mono);
+    line-height: 1;
+}
+
+.quizzes-stats__label {
+    font-size: 0.75rem;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ============================================================
+   НОВЫЙ РЕКОРД В РЕЗУЛЬТАТЕ
+   ============================================================ */
+
+.quiz-result__record {
+    display: inline-block;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, rgba(255, 184, 77, 0.15), rgba(255, 107, 107, 0.15));
+    border: 1px solid rgba(255, 184, 77, 0.5);
+    border-radius: 30px;
+    color: #ffb84d;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    animation: recordGlow 2s ease-in-out infinite;
+}
+
+.quiz-result__record--old {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--border);
+    color: var(--text-mute);
+    font-weight: 500;
+    animation: none;
+}
+
+@keyframes recordGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 184, 77, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 20px 4px rgba(255, 184, 77, 0.2);
+    }
+}
+
+/* Мобильный */
+@media (max-width: 600px) {
+    .quiz-item__head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quizzes-stats {
+        gap: 16px;
+        padding: 14px 16px;
+    }
+
+    .quizzes-stats__value {
+        font-size: 1.2rem;
+    }
+}

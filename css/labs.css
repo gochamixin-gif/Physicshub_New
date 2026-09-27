@@ -1,0 +1,500 @@
+/* ============================================================
+   СТРАНИЦА «ЛАБОРАТОРНЫЕ» — список
+   ============================================================ */
+
+.labs {
+    position: relative;
+    z-index: 1;
+}
+
+.labs-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+    animation: fadeIn 0.5s ease;
+}
+
+.labs-intro {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.labs-intro__label {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: #4ade80;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding: 5px 12px;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 6px;
+}
+
+.labs-intro__title {
+    font-size: clamp(1.7rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.6px;
+    color: var(--text);
+    margin-bottom: 12px;
+}
+
+.labs-intro__desc {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 620px;
+}
+
+/* --- Фильтры --- */
+.labs-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.labs-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.labs-filter:hover {
+    background: rgba(74, 222, 128, 0.12);
+    border-color: #4ade80;
+    color: var(--text);
+}
+
+.labs-filter--active {
+    background: rgba(74, 222, 128, 0.2);
+    border-color: #4ade80;
+    color: #fff;
+    font-weight: 600;
+}
+
+.labs-filter__count {
+    padding: 1px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #4ade80;
+}
+
+/* --- Список работ --- */
+.labs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lab-item {
+    display: block;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.lab-item:hover {
+    background: rgba(74, 222, 128, 0.06);
+    border-color: #4ade80;
+    transform: translateX(6px);
+}
+
+.lab-item__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: var(--text-mute);
+}
+
+.lab-item__level {
+    padding: 2px 10px;
+    background: rgba(74, 222, 128, 0.15);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 20px;
+    color: #4ade80;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.lab-item__category {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.lab-item__duration {
+    color: var(--accent-3);
+}
+
+.lab-item__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.lab-item__desc {
+    font-size: 0.95rem;
+    color: var(--text-mute);
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.lab-item__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.lab-item__goal {
+    font-size: 0.85rem;
+    color: #4ade80;
+    font-weight: 500;
+}
+
+.lab-item__arrow {
+    font-size: 0.9rem;
+    color: var(--text-mute);
+    transition: all 0.25s;
+}
+
+.lab-item:hover .lab-item__arrow {
+    color: #4ade80;
+}
+
+.labs-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-mute);
+}
+
+/* ============================================================
+   ПРОСМОТР ЛАБОРАТОРНОЙ
+   ============================================================ */
+
+.lab-view {
+    position: relative;
+    z-index: 1;
+}
+
+.lab-view-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 32px 80px;
+    animation: fadeIn 0.4s ease;
+}
+
+.lab-view__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-bottom: 32px;
+    transition: all 0.2s ease;
+}
+
+.lab-view__back:hover {
+    background: rgba(74, 222, 128, 0.15);
+    border-color: #4ade80;
+    color: #fff;
+}
+
+.lab-view__header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.lab-view__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.lab-view__badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.lab-view__badge--level {
+    background: rgba(74, 222, 128, 0.15);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    color: #4ade80;
+}
+
+.lab-view__badge--category {
+    background: rgba(79, 172, 254, 0.15);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    color: var(--accent);
+}
+
+.lab-view__badge--topic {
+    background: rgba(167, 139, 250, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    color: var(--accent-3);
+}
+
+.lab-view__badge--duration {
+    background: rgba(0, 242, 254, 0.1);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    color: var(--accent-2);
+}
+
+.lab-view__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 12px;
+}
+
+.lab-view__desc {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+/* Блоки */
+.lab-block {
+    margin-bottom: 28px;
+    padding: 20px 24px;
+    border-radius: var(--radius-md);
+    border-left: 4px solid;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.lab-block__label {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.lab-block__body {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.lab-block--goal {
+    background: rgba(74, 222, 128, 0.06);
+    border-color: #4ade80;
+}
+
+.lab-block--goal .lab-block__label {
+    color: #4ade80;
+}
+
+.lab-block--equipment {
+    background: rgba(79, 172, 254, 0.06);
+    border-color: var(--accent);
+}
+
+.lab-block--equipment .lab-block__label {
+    color: var(--accent);
+}
+
+.lab-block--theory {
+    background: rgba(0, 242, 254, 0.05);
+    border-color: var(--accent-2);
+}
+
+.lab-block--theory .lab-block__label {
+    color: var(--accent-2);
+}
+
+.lab-block--steps {
+    background: rgba(167, 139, 250, 0.06);
+    border-color: var(--accent-3);
+}
+
+.lab-block--steps .lab-block__label {
+    color: var(--accent-3);
+}
+
+.lab-block--table {
+    background: rgba(0, 242, 254, 0.04);
+    border-color: var(--accent-2);
+}
+
+.lab-block--table .lab-block__label {
+    color: var(--accent-2);
+}
+
+.lab-block--conclusion {
+    background: rgba(74, 222, 128, 0.08);
+    border-color: #4ade80;
+}
+
+.lab-block--conclusion .lab-block__label {
+    color: #4ade80;
+}
+
+.lab-block--notes {
+    background: rgba(255, 184, 77, 0.06);
+    border-color: #ffb84d;
+}
+
+.lab-block--notes .lab-block__label {
+    color: #ffb84d;
+}
+
+/* Списки */
+.lab-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.lab-list li {
+    position: relative;
+    padding-left: 20px;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.lab-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: currentColor;
+    opacity: 0.6;
+    font-weight: 700;
+}
+
+/* Шаги */
+.lab-steps {
+    padding-left: 24px;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.lab-steps li {
+    color: var(--text);
+    line-height: 1.7;
+    padding-left: 4px;
+}
+
+/* Таблица */
+.lab-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+}
+
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 0.95rem;
+}
+
+.lab-table th,
+.lab-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.lab-table th {
+    background: rgba(0, 242, 254, 0.08);
+    color: var(--accent-2);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.lab-table td {
+    color: var(--text);
+}
+
+.lab-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+
+@media (max-width: 700px) {
+    .labs-page,
+    .lab-view-inner {
+        padding: 28px 16px 60px;
+    }
+
+    .labs-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .labs-filter {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+    }
+
+    .lab-item {
+        padding: 16px 18px;
+    }
+
+    .lab-item:hover {
+        transform: none;
+    }
+
+    .lab-block {
+        padding: 16px 18px;
+    }
+
+    .lab-view__title {
+        font-size: 1.3rem;
+    }
+}
