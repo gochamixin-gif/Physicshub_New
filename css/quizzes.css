@@ -682,3 +682,92 @@
         flex-direction: column;
     }
 }
+/* ============================================================
+   ТАЙМЕР ТЕСТА
+   ============================================================ */
+
+.quiz-view-toolbar__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.quiz-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(79, 172, 254, 0.12);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 30px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.quiz-timer--warn {
+    background: rgba(255, 184, 77, 0.15);
+    border-color: rgba(255, 184, 77, 0.5);
+    color: #ffb84d;
+}
+
+.quiz-timer--danger {
+    background: rgba(255, 107, 107, 0.15);
+    border-color: rgba(255, 107, 107, 0.6);
+    color: #ff6b6b;
+    animation: timerPulse 1s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 107, 107, 0);
+        transform: scale(1.03);
+    }
+}
+
+/* Время в результате */
+.quiz-result__time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+}
+
+.quiz-result__time strong {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: 700;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+    .quiz-view-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .quiz-view-toolbar__right {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .quiz-timer {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}

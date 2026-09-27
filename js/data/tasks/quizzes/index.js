@@ -4,10 +4,12 @@
 
 import { mechanicsQuizzes } from './mechanics.js';
 import { generalQuizzes }   from './general.js';
+import { topicQuizzes }     from './topics.js';
 
 export const quizDatabase = [
     ...mechanicsQuizzes,
-    ...generalQuizzes
+    ...generalQuizzes,
+    ...topicQuizzes
 ];
 
 export function getQuizById(id) {

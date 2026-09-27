@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="" />
+    <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/js/data/tasks/quizzes/topics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/tasks/quizzes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/tasks/quizzes/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1790511847906</updated>
-      <workItem from="1790511848951" duration="13630000" />
+      <workItem from="1790511848951" duration="13936000" />
     </task>
     <servers />
   </component>

@@ -1,16 +1,26 @@
 // ============================================================
-// ПРОХОЖДЕНИЕ ТЕСТА — 5 вопросов последовательно
+// ПРОХОЖДЕНИЕ ТЕСТА — с таймером
 // ============================================================
 
 import { getQuizById } from '../data/tasks/quizzes/index.js';
 import { arrowBackIcon } from '../icons.js';
 
+// Время по уровням сложности (в секундах)
+const TIME_BY_LEVEL = {
+    1: 5 * 60,   // 5 минут
+    2: 7 * 60,   // 7 минут
+    3: 10 * 60   // 10 минут
+};
+
 // Состояние текущего теста
 let state = {
     quizId: null,
     current: 0,
-    answers: [],   // индекс выбранного ответа для каждого вопроса
-    checked: []    // были ли проверены ответы
+    answers: [],
+    checked: [],
+    timeLeft: 0,      // сколько осталось секунд
+    timerId: null,    // ID интервала
+    timeUp: false     // время вышло
 };
 
 function levelStars(level) {
@@ -18,16 +28,83 @@ function levelStars(level) {
 }
 
 /**
- * Начать тест
+ * Форматирует секунды в ММ:СС
+ */
+function formatTime(sec) {
+    if (sec < 0) sec = 0;
+    const m = Math.floor(sec / 60);
+    const s = sec % 60;
+    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+/**
+ * Останавливает таймер
+ */
+function stopTimer() {
+    if (state.timerId) {
+        clearInterval(state.timerId);
+        state.timerId = null;
+    }
+}
+
+/**
+ * Запускает таймер
+ */
+function startTimer() {
+    stopTimer();
+    state.timerId = setInterval(() => {
+        state.timeLeft--;
+        if (state.timeLeft <= 0) {
+            state.timeLeft = 0;
+            state.timeUp = true;
+            stopTimer();
+            const quiz = getQuizById(state.quizId);
+            renderResult(quiz);
+            return;
+        }
+        updateTimerDisplay();
+    }, 1000);
+}
+
+/**
+ * Обновляет только блок с таймером (без перерисовки всего)
+ */
+function updateTimerDisplay() {
+    const el = document.getElementById('quizTimer');
+    if (!el) return;
+
+    el.textContent = `⏱ ${formatTime(state.timeLeft)}`;
+
+    // Меняем цвет в зависимости от остатка
+    el.classList.remove('quiz-timer--warn', 'quiz-timer--danger');
+
+    if (state.timeLeft <= 20) {
+        el.classList.add('quiz-timer--danger');
+    } else if (state.timeLeft <= 60) {
+        el.classList.add('quiz-timer--warn');
+    }
+}
+
+/**
+ * Начать тест заново
  */
 export function renderQuizView(quizId) {
+    const quiz = getQuizById(quizId);
+    const totalTime = TIME_BY_LEVEL[quiz.level] || TIME_BY_LEVEL[1];
+
     state = {
         quizId,
         current: 0,
         answers: [],
-        checked: []
+        checked: [],
+        timeLeft: totalTime,
+        timerId: null,
+        timeUp: false
     };
+
+    stopTimer();
     renderCurrentQuestion();
+    startTimer();
 }
 
 /**
@@ -47,14 +124,22 @@ function renderCurrentQuestion() {
     const userAnswer = state.answers[state.current];
     const isChecked = state.checked[state.current];
 
+    // Определяем класс таймера
+    let timerClass = 'quiz-timer';
+    if (state.timeLeft <= 20) timerClass += ' quiz-timer--danger';
+    else if (state.timeLeft <= 60) timerClass += ' quiz-timer--warn';
+
     container.innerHTML = `
     <div class="quiz-view-inner">
       <div class="quiz-view-toolbar">
         <button class="quiz-view__back" id="quizBackBtn" type="button">
           ${arrowBackIcon(16)} Назад к тестам
         </button>
-        <div class="quiz-view__counter">
-          Вопрос <strong>${state.current + 1}</strong> из ${total}
+        <div class="quiz-view-toolbar__right">
+          <div class="quiz-view__counter">
+            Вопрос <strong>${state.current + 1}</strong> из ${total}
+          </div>
+          <div class="${timerClass}" id="quizTimer">⏱ ${formatTime(state.timeLeft)}</div>
         </div>
       </div>
 
@@ -119,7 +204,6 @@ function bindQuestionEvents(quiz) {
     const container = document.getElementById('quizView');
     const isChecked = state.checked[state.current];
 
-    // Клик по опции (пока не проверено)
     if (!isChecked) {
         container.querySelectorAll('.quiz-option').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -135,7 +219,6 @@ function bindQuestionEvents(quiz) {
             renderCurrentQuestion();
         });
     } else {
-        // Показать объяснение
         const expl = document.getElementById('quizExplanation');
         expl?.classList.remove('hidden');
 
@@ -145,6 +228,7 @@ function bindQuestionEvents(quiz) {
                 state.current++;
                 renderCurrentQuestion();
             } else {
+                stopTimer();
                 renderResult(quiz);
             }
         });
@@ -155,6 +239,7 @@ function bindQuestionEvents(quiz) {
  * Итоговый результат
  */
 function renderResult(quiz) {
+    stopTimer();
     const container = document.getElementById('quizView');
     const total = quiz.questions.length;
     let correct = 0;
@@ -163,8 +248,16 @@ function renderResult(quiz) {
     });
     const percent = Math.round((correct / total) * 100);
 
+    // Время
+    const totalTime = TIME_BY_LEVEL[quiz.level] || TIME_BY_LEVEL[1];
+    const timeSpent = totalTime - state.timeLeft;
+
     let medal, title, message;
-    if (percent === 100) {
+    if (state.timeUp) {
+        medal = '⏰';
+        title = 'Время вышло!';
+        message = 'Попробуй ещё раз — в следующий раз получится быстрее.';
+    } else if (percent === 100) {
         medal = '🏆';
         title = 'Идеально!';
         message = 'Все ответы верные — ты отлично знаешь тему!';
@@ -197,6 +290,10 @@ function renderResult(quiz) {
           <span class="quiz-result__total">${total}</span>
         </div>
         <div class="quiz-result__percent">${percent}%</div>
+        <div class="quiz-result__time">
+          ⏱ Время: <strong>${formatTime(timeSpent)}</strong>
+          ${state.timeUp ? ' (вышло)' : ''}
+        </div>
         <p class="quiz-result__message">${message}</p>
 
         <div class="quiz-result__answers">
@@ -230,12 +327,12 @@ function renderResult(quiz) {
     </div>
   `;
 
-    // Обработчики
     document.getElementById('retryBtn')?.addEventListener('click', () => {
         renderQuizView(quiz.id);
     });
 
     document.getElementById('backToListBtn')?.addEventListener('click', () => {
+        stopTimer();
         import('../core/router.js').then(({ showQuizzes }) => {
             showQuizzes();
             import('./quizzes.js').then(({ renderQuizzes }) => {
