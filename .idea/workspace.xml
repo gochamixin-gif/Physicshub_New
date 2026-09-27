@@ -5,67 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/css/quizzes.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/data/tasks/quizzes/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/data/tasks/quizzes/mechanics.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/ui/quiz-view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/ui/quizzes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/aerostatics-history.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/aerostatics-history.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/aircraft-thrust.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/aircraft-thrust.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/archimedes.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/archimedes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/atmospheric-pressure-home.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/atmospheric-pressure-home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/average-speed-tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/average-speed-tasks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/bicycle-physics.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/bicycle-physics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/cavendish.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/cavendish.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/center-of-gravity.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/center-of-gravity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/crane-physics.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/crane-physics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/equilibrium-conditions.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/equilibrium-conditions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/equilibrium-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/equilibrium-types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/galileo.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/galileo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/how-g-measured.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/how-g-measured.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/hydrometer.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/hydrometer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/instruments-accuracy.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/instruments-accuracy.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-density.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-diffusion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-dynamometer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-friction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-gravity-force.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-lever.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-mass-scales.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-small-bodies.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-volume-displacement.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/lab-work-power.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/length-measurement.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/length-measurement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/magdeburg-hemispheres.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/magdeburg-hemispheres.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/moon-footprints.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/moon-footprints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/motion-graphs.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/motion-graphs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/newton-apple.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/newton-apple.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/ocean-depth-sound.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/ocean-depth-sound.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/pascal-experiments.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/pascal-experiments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-atmosphere.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-atmosphere.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-bicycle.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-bicycle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-car.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-car.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-health.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-health.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-home.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-kitchen.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-kitchen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-nature.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-nature.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-ocean.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-ocean.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-space.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-space.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/physics-in-sport.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/physics-in-sport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/rainbow-physics.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/rainbow-physics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/si-prefixes.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/si-prefixes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/simple-mechanisms-animals.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/simple-mechanisms-animals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/simple-mechanisms-body.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/simple-mechanisms-body.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/simple-mechanisms-home.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/simple-mechanisms-home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/small-body-diameter.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/small-body-diameter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/smartphone-barometer.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/smartphone-barometer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/sound-speed-media.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/sound-speed-media.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/thermos-physics.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/thermos-physics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/time-measurement.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/time-measurement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/torricelli-history.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/torricelli-history.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/vacuum.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/vacuum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/water-supply.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/water-supply.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/why-ice-slippery.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/why-ice-slippery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/why-plane-flies.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/why-plane-flies.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/why-sky-blue.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/why-sky-blue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/data/topics/why-space-dark.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/topics/why-space-dark.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/core/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/core/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/tasks/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/data/tasks/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/ui/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/ui/hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui/hero.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1790511847906</updated>
-      <workItem from="1790511848951" duration="11597000" />
+      <workItem from="1790511848951" duration="12406000" />
     </task>
     <servers />
   </component>

@@ -7,7 +7,8 @@ import { setActiveTab } from '../ui/hero.js';
 
 const $ = id => document.getElementById(id);
 
-const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView'];
+// Все экраны приложения
+const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView', 'quizzes', 'quizView'];
 
 function hideAll() {
     ALL_VIEWS.forEach(id => {
@@ -15,6 +16,8 @@ function hideAll() {
         if (el) el.classList.add('hidden');
     });
 }
+
+// --- Энциклопедия ---
 
 export function showHero() {
     setView('hero');
@@ -40,6 +43,8 @@ export function showArticle(id) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// --- Задачи ---
+
 export function showTasks() {
     setView('tasks');
     hideAll();
@@ -54,5 +59,24 @@ export function showTaskView(id) {
     hideAll();
     $('taskView').classList.remove('hidden');
     setActiveTab('tasks');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- Тесты ---
+
+export function showQuizzes() {
+    setView('quizzes');
+    hideAll();
+    $('quizzes').classList.remove('hidden');
+    setActiveTab('quizzes');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+export function showQuizView(id) {
+    setView('quizView');
+    setArticle(id);
+    hideAll();
+    $('quizView').classList.remove('hidden');
+    setActiveTab('quizzes');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }

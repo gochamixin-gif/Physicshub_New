@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phyzzy — энциклопедия физики</title>
-    <meta name="theme-color" content="#0f0c29">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
 
+    <!-- ============================================================
+         ОСНОВНОЕ
+         ============================================================ -->
+    <title>Phyzzy — энциклопедия физики с задачами и тестами</title>
+    <meta name="description" content="Phyzzy — понятная энциклопедия физики: 120+ статей с формулами и схемами, 40+ задач с проверкой, тесты с объяснениями. От строения вещества до квантовой механики.">
+    <meta name="keywords" content="физика, энциклопедия, задачи по физике, тесты по физике, формулы, механика, термодинамика, электричество, оптика, квантовая физика, обучение">
+    <meta name="author" content="Phyzzy">
+    <meta name="theme-color" content="#0f0c29">
+
+    <!-- ============================================================
+         FAVICON
+         ============================================================ -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+
+    <!-- ============================================================
+         СТИЛИ
+         ============================================================ -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/base.css">
@@ -16,14 +31,21 @@
     <link rel="stylesheet" href="css/article.css">
     <link rel="stylesheet" href="css/blocks.css">
     <link rel="stylesheet" href="css/tasks.css">
+    <link rel="stylesheet" href="css/quizzes.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
 
-<!-- Шапка -->
+<!-- ============================================================
+     ШАПКА (всегда видна, sticky)
+     ============================================================ -->
 <header id="appHeader"></header>
 
-<!-- Главный экран -->
+<!-- ============================================================
+     ГЛАВНЫЕ ЭКРАНЫ
+     ============================================================ -->
+
+<!-- Главный экран — энциклопедия -->
 <main class="hero" id="hero"></main>
 
 <!-- Результаты поиска -->
@@ -32,13 +54,30 @@
 <!-- Статья -->
 <article class="article hidden" id="article"></article>
 
-<!-- Задачи -->
+<!-- ============================================================
+     ЗАДАЧИ
+     ============================================================ -->
+
+<!-- Задачи — список -->
 <section class="tasks hidden" id="tasks"></section>
 
 <!-- Одна задача -->
 <section class="task-view hidden" id="taskView"></section>
 
+<!-- ============================================================
+     ТЕСТЫ
+     ============================================================ -->
 
+<!-- Тесты — список -->
+<section class="quizzes hidden" id="quizzes"></section>
+
+<!-- Прохождение теста -->
+<section class="quiz-view hidden" id="quizView"></section>
+
+<!-- ============================================================
+     ТОЧКА ВХОДА
+     ============================================================ -->
 <script type="module" src="js/main.js"></script>
+
 </body>
 </html>

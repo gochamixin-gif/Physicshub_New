@@ -7,12 +7,16 @@ import {
     showHero,
     showArticle,
     showTasks,
-    showTaskView
+    showTaskView,
+    showQuizzes,
+    showQuizView
 } from '../core/router.js';
 import { renderResults, resetFilter } from './results.js';
 import { renderArticle } from './article.js';
 import { renderTasks, resetTaskFilter } from './tasks.js';
 import { renderTaskView } from './task-view.js';
+import { renderQuizzes, resetQuizFilter } from './quizzes.js';
+import { renderQuizView } from './quiz-view.js';
 import { getRandomArticle } from './hero.js';
 import { state } from '../core/state.js';
 
@@ -44,7 +48,7 @@ export function initEvents() {
     // ============================================================
     document.addEventListener('click', e => {
 
-        // --- Логотип — на главную ---
+        // --- Логотип ---
         if (e.target.closest('#logoLink')) {
             e.preventDefault();
             const input = document.getElementById('search');
@@ -64,6 +68,10 @@ export function initEvents() {
                 resetTaskFilter();
                 showTasks();
                 renderTasks();
+            } else if (name === 'quizzes') {
+                resetQuizFilter();
+                showQuizzes();
+                renderQuizzes();
             } else {
                 // articles
                 const input = document.getElementById('search');
@@ -83,7 +91,7 @@ export function initEvents() {
             return;
         }
 
-        // --- 🎲 Случайная статья ---
+        // --- Случайная статья ---
         if (e.target.closest('#randomBtn')) {
             const item = getRandomArticle();
             if (!item) return;
@@ -92,7 +100,7 @@ export function initEvents() {
             return;
         }
 
-        // --- Карточка раздела энциклопедии ---
+        // --- Карточка раздела ---
         const sectionCard = e.target.closest('.section-card');
         if (sectionCard) {
             e.preventDefault();
@@ -112,7 +120,7 @@ export function initEvents() {
             return;
         }
 
-        // --- Открытие статьи (результат поиска) ---
+        // --- Открытие статьи ---
         const articleItem = e.target.closest('.result-item');
         if (articleItem) {
             e.preventDefault();
@@ -122,7 +130,7 @@ export function initEvents() {
             return;
         }
 
-        // --- Кнопка «Назад к поиску» в статье ---
+        // --- Кнопка «Назад к поиску» ---
         if (e.target.closest('#articleBack')) {
             const q = state.query || '';
             if (q) {
@@ -135,7 +143,7 @@ export function initEvents() {
             return;
         }
 
-        // --- Открытие задачи из списка ---
+        // --- Открытие задачи ---
         const taskItem = e.target.closest('.task-item');
         if (taskItem) {
             e.preventDefault();
@@ -149,6 +157,23 @@ export function initEvents() {
         if (e.target.closest('#taskBackBtn')) {
             showTasks();
             renderTasks();
+            return;
+        }
+
+        // --- Открытие теста ---
+        const quizItem = e.target.closest('.quiz-item');
+        if (quizItem) {
+            e.preventDefault();
+            const id = quizItem.dataset.quizId;
+            showQuizView(id);
+            renderQuizView(id);
+            return;
+        }
+
+        // --- Кнопка «Назад к тестам» ---
+        if (e.target.closest('#quizBackBtn')) {
+            showQuizzes();
+            renderQuizzes();
             return;
         }
     });
