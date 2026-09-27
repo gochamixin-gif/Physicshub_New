@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/js/data/labs/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/data/labs/mechanics/lab-mass-scales.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/data/labs/mechanics/lab-small-bodies.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/data/labs/mechanics/lab-volume.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/quizzes.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/quizzes.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/core/progress.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/core/progress.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/ui/hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui/hero.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ui/quiz-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui/quiz-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ui/quizzes.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui/quizzes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1790511847906</updated>
-      <workItem from="1790511848951" duration="14663000" />
+      <workItem from="1790511848951" duration="15286000" />
     </task>
     <servers />
   </component>
