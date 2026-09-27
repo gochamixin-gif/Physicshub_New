@@ -1,0 +1,59 @@
+:root {
+    /* Фон */
+    --bg-1: #0f0c29;
+    --bg-2: #302b63;
+    --bg-3: #24243e;
+    --surface: rgba(255, 255, 255, 0.05);
+    --surface-hover: rgba(255, 255, 255, 0.09);
+    --border: rgba(255, 255, 255, 0.12);
+
+    /* Акценты */
+    --accent: #4facfe;
+    --accent-2: #00f2fe;
+    --accent-3: #a78bfa;
+    --accent-4: #ff6b6b;
+
+    /* Текст */
+    --text: #e8e8f0;
+    --text-dim: #a0a0b0;
+    --text-mute: #707080;
+
+    /* Семантика */
+    --info: #4facfe;
+    --warn: #ffb84d;
+    --danger: #ff6b6b;
+    --success: #4ade80;
+
+    /* Градиенты */
+    --gradient-accent: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+    --gradient-bg: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+
+    /* Радиусы */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-pill: 60px;
+
+    /* Отступы */
+    --space-xs: 6px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 32px;
+    --space-xl: 48px;
+
+    /* Шрифты */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-mono: 'SF Mono', Consolas, Monaco, monospace;
+
+    /* Размеры текста */
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 2rem;
+    --text-3xl: 3rem;
+
+    /* Тени */
+    --shadow-glow: 0 0 40px rgba(79, 172, 254, 0.35);
+}

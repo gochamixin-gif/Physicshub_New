@@ -1,0 +1,49 @@
+@media (max-width: 700px) {
+    :root {
+        --text-3xl: 2.2rem;
+        --text-2xl: 1.6rem;
+        --text-xl: 1.25rem;
+        --text-lg: 1rem;
+    }
+
+    .hero.compact { padding-top: 30px; }
+
+    .search-box {
+        padding: 16px 50px 16px 50px;
+        font-size: var(--text-base);
+    }
+
+    .article {
+        padding: 20px 16px 60px;
+    }
+
+    .article-header__title {
+        line-height: 1.2;
+    }
+
+    .formula-body { font-size: 1.15rem; }
+    .formula-block { padding: var(--space-md); }
+
+    .result-item { padding: 16px 18px; }
+    .result-item:hover { transform: none; }
+
+    .quote { padding: var(--space-md); }
+    .random-btn {
+        padding: 10px 18px;
+        font-size: var(--text-sm);
+    }
+
+    .results-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .results-filter {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+    }
+}

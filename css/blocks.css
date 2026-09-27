@@ -1,0 +1,158 @@
+/* ============================================
+   ФОРМУЛЫ
+   ============================================ */
+.formula-block {
+    background: rgba(79, 172, 254, 0.07);
+    border: 1px solid rgba(79, 172, 254, 0.25);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+}
+
+.formula-body {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: #fff;
+    line-height: 1.4;
+    padding: var(--space-sm) 0;
+}
+
+.formula-legend {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    display: grid;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.formula-legend li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: var(--text-dim);
+}
+
+.formula-legend__sym {
+    color: var(--accent);
+    font-family: var(--font-serif);
+    font-style: italic;
+    min-width: 60px;
+    font-weight: 600;
+}
+
+.formula-legend__dash {
+    color: var(--text-mute);
+}
+
+.formula-legend__unit {
+    margin-left: auto;
+    color: var(--accent-3);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+}
+
+/* ============================================
+   ВРЕЗКИ (NOTE)
+   ============================================ */
+.note {
+    margin: var(--space-lg) 0;
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.note--info    { border-color: var(--info);    background: rgba(79, 172, 254, 0.08); }
+.note--warn    { border-color: var(--warn);    background: rgba(255, 184, 77, 0.08); }
+.note--danger  { border-color: var(--danger);  background: rgba(255, 107, 107, 0.08); }
+.note--success { border-color: var(--success); background: rgba(74, 222, 128, 0.08); }
+
+.note__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.note__icon {
+    font-size: 1.2rem;
+}
+
+.note__body {
+    color: var(--text-dim);
+    line-height: 1.7;
+}
+
+.note__body p { margin-bottom: 8px; }
+.note__body ul { margin: 8px 0 8px var(--space-md); }
+
+/* ============================================
+   СХЕМЫ (DIAGRAM)
+   ============================================ */
+.diagram {
+    margin: var(--space-lg) 0;
+    padding: var(--space-lg);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.diagram svg {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.diagram figcaption {
+    margin-top: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--text-mute);
+    font-style: italic;
+}
+
+/* ============================================
+   ЦИТАТЫ
+   ============================================ */
+.quote {
+    margin: var(--space-lg) 0;
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--accent-3);
+    background: rgba(167, 139, 250, 0.06);
+    border-radius: var(--radius-md);
+}
+
+.quote__text {
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--text);
+    margin-bottom: var(--space-sm);
+    line-height: 1.6;
+}
+
+.quote__footer {
+    font-size: var(--text-sm);
+    color: var(--text-dim);
+}
+
+.quote__footer strong {
+    color: var(--accent-3);
+}
+
+/* ============================================
+   БЕЙДЖ
+   ============================================ */
+.badge {
+    display: inline-block;
+    padding: 3px 12px;
+    background: rgba(79, 172, 254, 0.15);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+}

@@ -1,0 +1,77 @@
+.search-wrap {
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    animation: fadeIn 0.6s ease 0.15s backwards;
+}
+
+.search-box {
+    width: 100%;
+    padding: 20px 24px 20px 60px;
+    font-size: var(--text-lg);
+    background: rgba(255, 255, 255, 0.06);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-pill);
+    color: var(--text);
+    outline: none;
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+}
+
+.search-box::placeholder { color: var(--text-mute); }
+
+.search-box:focus {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.search-icon {
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-mute);
+    pointer-events: none;
+    display: flex;
+    transition: color 0.25s;
+}
+
+.search-wrap:focus-within .search-icon {
+    color: var(--accent);
+}
+/* ============================================
+   КНОПКА «СЛУЧАЙНАЯ ТЕМА»
+   ============================================ */
+.random-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-md);
+    padding: 12px 24px;
+    background: rgba(167, 139, 250, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    border-radius: var(--radius-pill);
+    color: var(--accent-3);
+    font-size: var(--text-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    animation: fadeIn 0.6s ease 0.2s backwards;
+}
+
+.random-btn:hover {
+    background: rgba(167, 139, 250, 0.22);
+    border-color: var(--accent-3);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.3);
+}
+
+.random-btn:active {
+    transform: translateY(0);
+}
+
+.hero.compact .random-btn {
+    display: none;
+}
