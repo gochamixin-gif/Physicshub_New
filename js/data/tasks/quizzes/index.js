@@ -3,9 +3,11 @@
 // ============================================================
 
 import { mechanicsQuizzes } from './mechanics.js';
+import { generalQuizzes }   from './general.js';
 
 export const quizDatabase = [
-    ...mechanicsQuizzes
+    ...mechanicsQuizzes,
+    ...generalQuizzes
 ];
 
 export function getQuizById(id) {
