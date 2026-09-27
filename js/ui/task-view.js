@@ -1,16 +1,22 @@
 // ============================================================
-// ПРОСМОТР ОДНОЙ ЗАДАЧИ — ученик решает сам
+// ПРОСМОТР ОДНОЙ ЗАДАЧИ — с навигацией
 // ============================================================
 
-import { getTaskById } from '../data/tasks/index.js';
+import { getTaskById, taskDatabase } from '../data/tasks/index.js';
 import { arrowBackIcon } from '../icons.js';
 import { isTaskSolved, markTaskSolved } from '../core/progress.js';
 
+/**
+ * Уровень сложности
+ */
 function levelStars(level) {
     const labels = { 1: 'Базовая', 2: 'Средняя', 3: 'Олимпиадная' };
     return `${'⭐'.repeat(level)} ${labels[level] || ''}`.trim();
 }
 
+/**
+ * Нормализация ответа
+ */
 function normalize(str) {
     return String(str)
         .toLowerCase()
@@ -19,6 +25,9 @@ function normalize(str) {
         .replace(/,/g, '.');
 }
 
+/**
+ * Проверка ответа
+ */
 function checkAnswer(input, task) {
     if (!input) return false;
     const user = normalize(input);
@@ -36,6 +45,66 @@ function checkAnswer(input, task) {
     return false;
 }
 
+/**
+ * Находит соседние задачи в той же категории
+ */
+function getNeighbors(taskId) {
+    const current = getTaskById(taskId);
+    if (!current) return { prev: null, next: null };
+
+    const sameCategory = taskDatabase.filter(t => t.category === current.category);
+    const idx = sameCategory.findIndex(t => t.id === taskId);
+
+    return {
+        prev: idx > 0 ? sameCategory[idx - 1] : null,
+        next: idx < sameCategory.length - 1 ? sameCategory[idx + 1] : null
+    };
+}
+
+/**
+ * Обрезает длинный текст задачи для превью
+ */
+function truncate(text, max = 60) {
+    if (!text) return '';
+    return text.length > max ? text.slice(0, max).trim() + '…' : text;
+}
+
+/**
+ * Рендер нижней навигации
+ */
+function renderNav(taskId) {
+    const { prev, next } = getNeighbors(taskId);
+
+    if (!prev && !next) return '';
+
+    return `
+    <nav class="task-nav">
+      ${prev ? `
+        <button class="task-nav__btn task-nav__btn--prev" data-nav-id="${prev.id}" type="button">
+          <span class="task-nav__arrow">←</span>
+          <span class="task-nav__label">
+            <span class="task-nav__hint">Предыдущая</span>
+            <span class="task-nav__title">${truncate(prev.task)}</span>
+          </span>
+        </button>
+      ` : '<span></span>'}
+
+      ${next ? `
+        <button class="task-nav__btn task-nav__btn--next" data-nav-id="${next.id}" type="button">
+          <span class="task-nav__label">
+            <span class="task-nav__hint">Следующая</span>
+            <span class="task-nav__title">${truncate(next.task)}</span>
+          </span>
+          <span class="task-nav__arrow">→</span>
+        </button>
+      ` : '<span></span>'}
+    </nav>
+  `;
+}
+
+/**
+ * Главный рендер задачи
+ */
 export function renderTaskView(id) {
     const container = document.getElementById('taskView');
     const t = getTaskById(id);
@@ -113,13 +182,22 @@ export function renderTaskView(id) {
           <div class="task-block__label">Ответ</div>
           <div class="task-block__body">${t.answer}</div>
         </div>
+
+        <!-- Кнопка «Следующая задача» (появляется после раскрытия решения) -->
+        <div class="task-next-after-solution" id="nextAfterSolution"></div>
       </div>
+
+      ${renderNav(id)}
     </div>
   `;
 
     bindTaskActions(t, id);
+    bindNav();
 }
 
+/**
+ * Обработчики задачи
+ */
 function bindTaskActions(task, id) {
     const hintBtn = document.getElementById('hintBtn');
     const hintBlock = document.getElementById('hintBlock');
@@ -140,6 +218,7 @@ function bindTaskActions(task, id) {
         showSolutionBtn.textContent = '✅ Решение показано';
         showSolutionBtn.classList.add('task-action--done');
         document.getElementById('answerInputBlock')?.classList.add('hidden');
+        renderNextAfterSolution(id);
     });
 
     function doCheck() {
@@ -156,12 +235,22 @@ function bindTaskActions(task, id) {
         if (correct) {
             resultEl.className = 'task-answer-input__result task-answer-input__result--ok';
             resultEl.textContent = '✅ Верно! Отличная работа.';
-            // Сохраняем прогресс
             markTaskSolved(id);
-            // Раскрываем решение
             solutionBlock.classList.remove('hidden');
             showSolutionBtn.disabled = true;
             showSolutionBtn.textContent = '✅ Решение показано';
+            showSolutionBtn.classList.add('task-action--done');
+
+            // Обновляем бейдж «Решена»
+            const badges = document.querySelector('.task-view__badges');
+            if (badges && !badges.querySelector('.task-view__badge--solved')) {
+                const badge = document.createElement('span');
+                badge.className = 'task-view__badge task-view__badge--solved';
+                badge.textContent = '✓ Решена';
+                badges.appendChild(badge);
+            }
+
+            renderNextAfterSolution(id);
         } else {
             resultEl.className = 'task-answer-input__result task-answer-input__result--fail';
             resultEl.textContent = '❌ Не совсем. Попробуй ещё раз или посмотри подсказку.';
@@ -170,8 +259,57 @@ function bindTaskActions(task, id) {
     }
 
     checkBtn?.addEventListener('click', doCheck);
-
     answerField?.addEventListener('keydown', e => {
         if (e.key === 'Enter') doCheck();
+    });
+}
+
+/**
+ * Показывает кнопку «Следующая задача» внутри блока решения
+ */
+function renderNextAfterSolution(currentId) {
+    const container = document.getElementById('nextAfterSolution');
+    if (!container) return;
+
+    const { next } = getNeighbors(currentId);
+
+    if (next) {
+        container.innerHTML = `
+      <button class="task-next-btn" data-nav-id="${next.id}" type="button">
+        Следующая задача <span class="task-next-btn__arrow">→</span>
+      </button>
+    `;
+
+        container.querySelector('.task-next-btn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            import('../core/router.js').then(({ showTaskView }) => {
+                showTaskView(next.id);
+                renderTaskView(next.id);
+            });
+        });
+    } else {
+        // Это была последняя задача в категории
+        container.innerHTML = `
+      <div class="task-next-done">
+        🎉 Вы решили все задачи в этом разделе!
+      </div>
+    `;
+    }
+}
+
+/**
+ * Обработчики нижней навигации
+ */
+function bindNav() {
+    document.querySelectorAll('.task-nav__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const navId = btn.dataset.navId;
+            if (!navId) return;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            import('../core/router.js').then(({ showTaskView }) => {
+                showTaskView(navId);
+                renderTaskView(navId);
+            });
+        });
     });
 }

@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/js/ui/hero.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ui/hero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1790511847906</updated>
-      <workItem from="1790511848951" duration="1181000" />
+      <workItem from="1790511848951" duration="2556000" />
     </task>
     <servers />
   </component>
