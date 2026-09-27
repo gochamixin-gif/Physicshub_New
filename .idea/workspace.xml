@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="" />
+    <list default="true" id="ec0b6d59-6bd1-47d9-971d-db17bcd56abb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/js/data/labs/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/labs/mechanics/lab-mass-scales.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/labs/mechanics/lab-small-bodies.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/data/labs/mechanics/lab-volume.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1790511847906</updated>
-      <workItem from="1790511848951" duration="15678000" />
+      <workItem from="1790511848951" duration="16048000" />
     </task>
     <servers />
   </component>

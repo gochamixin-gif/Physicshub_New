@@ -35,13 +35,11 @@ export function renderLabView(id) {
         <p class="lab-view__desc">${lab.desc}</p>
       </header>
 
-      <!-- Цель -->
       <section class="lab-block lab-block--goal">
         <div class="lab-block__label">🎯 Цель работы</div>
         <p class="lab-block__body">${lab.goal}</p>
       </section>
 
-      <!-- Оборудование -->
       <section class="lab-block lab-block--equipment">
         <div class="lab-block__label">🧰 Оборудование</div>
         <ul class="lab-list">
@@ -49,7 +47,6 @@ export function renderLabView(id) {
         </ul>
       </section>
 
-      <!-- Теория -->
       ${lab.theory ? `
         <section class="lab-block lab-block--theory">
           <div class="lab-block__label">📖 Теория</div>
@@ -81,7 +78,6 @@ export function renderLabView(id) {
         </section>
       ` : ''}
 
-      <!-- Ход работы -->
       <section class="lab-block lab-block--steps">
         <div class="lab-block__label">📝 Ход работы</div>
         <ol class="lab-steps">
@@ -89,7 +85,6 @@ export function renderLabView(id) {
         </ol>
       </section>
 
-      <!-- Таблица -->
       ${lab.table ? `
         <section class="lab-block lab-block--table">
           <div class="lab-block__label">📊 Таблица результатов</div>
@@ -108,7 +103,6 @@ export function renderLabView(id) {
         </section>
       ` : ''}
 
-      <!-- Вывод -->
       ${lab.conclusion ? `
         <section class="lab-block lab-block--conclusion">
           <div class="lab-block__label">💡 Вывод</div>
@@ -116,7 +110,6 @@ export function renderLabView(id) {
         </section>
       ` : ''}
 
-      <!-- Заметки -->
       ${lab.notes && lab.notes.length ? `
         <section class="lab-block lab-block--notes">
           <div class="lab-block__label">⚠️ Важно</div>

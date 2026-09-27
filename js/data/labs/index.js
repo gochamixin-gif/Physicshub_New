@@ -2,14 +2,31 @@
 // РЕЕСТР ЛАБОРАТОРНЫХ РАБОТ
 // ============================================================
 
-import { labSmallBodies }  from './mechanics/lab-small-bodies.js';
-import { labMassScales }   from './mechanics/lab-mass-scales.js';
-import { labVolume }       from './mechanics/lab-volume.js';
+// Механика
+import { labSmallBodies } from './mechanics/lab-small-bodies.js';
+import { labMassScales }  from './mechanics/lab-mass-scales.js';
+import { labVolume }      from './mechanics/lab-volume.js';
+import { labDensity }     from './mechanics/lab-density.js';
+import { labFriction }    from './mechanics/lab-friction.js';
+
+// Давление
+import { labArchimedes }     from './pressure/lab-archimedes.js';
+import { labPressureLiquid } from './pressure/lab-pressure-liquid.js';
+
+// Работа и энергия
+import { labLever }     from './energy/lab-lever.js';
+import { labWorkPower } from './energy/lab-work-power.js';
 
 export const labDatabase = [
     labSmallBodies,
     labMassScales,
-    labVolume
+    labVolume,
+    labDensity,
+    labFriction,
+    labArchimedes,
+    labPressureLiquid,
+    labLever,
+    labWorkPower
 ];
 
 export function getLabById(id) {

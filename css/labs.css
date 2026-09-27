@@ -2,10 +2,7 @@
    СТРАНИЦА «ЛАБОРАТОРНЫЕ» — список
    ============================================================ */
 
-.labs {
-    position: relative;
-    z-index: 1;
-}
+.labs { position: relative; z-index: 1; }
 
 .labs-page {
     max-width: 1000px;
@@ -50,7 +47,6 @@
     max-width: 620px;
 }
 
-/* --- Фильтры --- */
 .labs-filters {
     display: flex;
     flex-wrap: wrap;
@@ -98,7 +94,6 @@
     color: #4ade80;
 }
 
-/* --- Список работ --- */
 .labs-list {
     display: flex;
     flex-direction: column;
@@ -143,14 +138,8 @@
     font-size: 0.75rem;
 }
 
-.lab-item__category {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-.lab-item__duration {
-    color: var(--accent-3);
-}
+.lab-item__category { color: var(--accent); font-weight: 500; }
+.lab-item__duration { color: var(--accent-3); }
 
 .lab-item__title {
     font-size: 1.15rem;
@@ -176,11 +165,7 @@
     flex-wrap: wrap;
 }
 
-.lab-item__goal {
-    font-size: 0.85rem;
-    color: #4ade80;
-    font-weight: 500;
-}
+.lab-item__goal { font-size: 0.85rem; color: #4ade80; font-weight: 500; }
 
 .lab-item__arrow {
     font-size: 0.9rem;
@@ -188,9 +173,7 @@
     transition: all 0.25s;
 }
 
-.lab-item:hover .lab-item__arrow {
-    color: #4ade80;
-}
+.lab-item:hover .lab-item__arrow { color: #4ade80; }
 
 .labs-empty {
     text-align: center;
@@ -202,10 +185,7 @@
    ПРОСМОТР ЛАБОРАТОРНОЙ
    ============================================================ */
 
-.lab-view {
-    position: relative;
-    z-index: 1;
-}
+.lab-view { position: relative; z-index: 1; }
 
 .lab-view-inner {
     max-width: 900px;
@@ -295,7 +275,6 @@
     line-height: 1.6;
 }
 
-/* Блоки */
 .lab-block {
     margin-bottom: 28px;
     padding: 20px 24px;
@@ -318,70 +297,27 @@
     color: var(--text);
 }
 
-.lab-block--goal {
-    background: rgba(74, 222, 128, 0.06);
-    border-color: #4ade80;
-}
+.lab-block--goal { background: rgba(74, 222, 128, 0.06); border-color: #4ade80; }
+.lab-block--goal .lab-block__label { color: #4ade80; }
 
-.lab-block--goal .lab-block__label {
-    color: #4ade80;
-}
+.lab-block--equipment { background: rgba(79, 172, 254, 0.06); border-color: var(--accent); }
+.lab-block--equipment .lab-block__label { color: var(--accent); }
 
-.lab-block--equipment {
-    background: rgba(79, 172, 254, 0.06);
-    border-color: var(--accent);
-}
+.lab-block--theory { background: rgba(0, 242, 254, 0.05); border-color: var(--accent-2); }
+.lab-block--theory .lab-block__label { color: var(--accent-2); }
 
-.lab-block--equipment .lab-block__label {
-    color: var(--accent);
-}
+.lab-block--steps { background: rgba(167, 139, 250, 0.06); border-color: var(--accent-3); }
+.lab-block--steps .lab-block__label { color: var(--accent-3); }
 
-.lab-block--theory {
-    background: rgba(0, 242, 254, 0.05);
-    border-color: var(--accent-2);
-}
+.lab-block--table { background: rgba(0, 242, 254, 0.04); border-color: var(--accent-2); }
+.lab-block--table .lab-block__label { color: var(--accent-2); }
 
-.lab-block--theory .lab-block__label {
-    color: var(--accent-2);
-}
+.lab-block--conclusion { background: rgba(74, 222, 128, 0.08); border-color: #4ade80; }
+.lab-block--conclusion .lab-block__label { color: #4ade80; }
 
-.lab-block--steps {
-    background: rgba(167, 139, 250, 0.06);
-    border-color: var(--accent-3);
-}
+.lab-block--notes { background: rgba(255, 184, 77, 0.06); border-color: #ffb84d; }
+.lab-block--notes .lab-block__label { color: #ffb84d; }
 
-.lab-block--steps .lab-block__label {
-    color: var(--accent-3);
-}
-
-.lab-block--table {
-    background: rgba(0, 242, 254, 0.04);
-    border-color: var(--accent-2);
-}
-
-.lab-block--table .lab-block__label {
-    color: var(--accent-2);
-}
-
-.lab-block--conclusion {
-    background: rgba(74, 222, 128, 0.08);
-    border-color: #4ade80;
-}
-
-.lab-block--conclusion .lab-block__label {
-    color: #4ade80;
-}
-
-.lab-block--notes {
-    background: rgba(255, 184, 77, 0.06);
-    border-color: #ffb84d;
-}
-
-.lab-block--notes .lab-block__label {
-    color: #ffb84d;
-}
-
-/* Списки */
 .lab-list {
     list-style: none;
     padding: 0;
@@ -406,7 +342,6 @@
     font-weight: 700;
 }
 
-/* Шаги */
 .lab-steps {
     padding-left: 24px;
     margin: 0;
@@ -420,7 +355,6 @@
     padding-left: 4px;
 }
 
-/* Таблица */
 .lab-table-wrap {
     overflow-x: auto;
     border-radius: var(--radius-md);
@@ -451,23 +385,11 @@
     white-space: nowrap;
 }
 
-.lab-table td {
-    color: var(--text);
-}
-
-.lab-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* ============================================================
-   АДАПТИВ
-   ============================================================ */
+.lab-table tr:last-child td { border-bottom: none; }
 
 @media (max-width: 700px) {
     .labs-page,
-    .lab-view-inner {
-        padding: 28px 16px 60px;
-    }
+    .lab-view-inner { padding: 28px 16px 60px; }
 
     .labs-filters {
         overflow-x: auto;
@@ -476,25 +398,9 @@
         -webkit-overflow-scrolling: touch;
     }
 
-    .labs-filter {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        flex-shrink: 0;
-    }
-
-    .lab-item {
-        padding: 16px 18px;
-    }
-
-    .lab-item:hover {
-        transform: none;
-    }
-
-    .lab-block {
-        padding: 16px 18px;
-    }
-
-    .lab-view__title {
-        font-size: 1.3rem;
-    }
+    .labs-filter { padding: 6px 12px; font-size: 0.8rem; flex-shrink: 0; }
+    .lab-item { padding: 16px 18px; }
+    .lab-item:hover { transform: none; }
+    .lab-block { padding: 16px 18px; }
+    .lab-view__title { font-size: 1.3rem; }
 }
