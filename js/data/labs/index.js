@@ -5,30 +5,11 @@
 import { labSmallBodies }  from './mechanics/lab-small-bodies.js';
 import { labMassScales }   from './mechanics/lab-mass-scales.js';
 import { labVolume }       from './mechanics/lab-volume.js';
-import { labDensity }      from './mechanics/lab-density.js';
-import { labFriction }     from './mechanics/lab-friction.js';
-
-import { labArchimedes }    from './pressure/lab-archimedes.js';
-import { labPressureLiquid } from './pressure/lab-pressure-liquid.js';
-
-import { labLever }        from './energy/lab-lever.js';
-import { labWorkPower }    from './energy/lab-work-power.js';
 
 export const labDatabase = [
-    // Механика
     labSmallBodies,
     labMassScales,
-    labVolume,
-    labDensity,
-    labFriction,
-
-    // Давление
-    labArchimedes,
-    labPressureLiquid,
-
-    // Работа и энергия
-    labLever,
-    labWorkPower
+    labVolume
 ];
 
 export function getLabById(id) {
