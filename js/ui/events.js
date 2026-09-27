@@ -7,12 +7,14 @@ import {
     showHero,
     showArticle,
     showTasks,
-    showTaskView
+    showTaskView,
+    showSi
 } from '../core/router.js';
 import { renderResults, resetFilter } from './results.js';
 import { renderArticle } from './article.js';
 import { renderTasks, resetTaskFilter } from './tasks.js';
 import { renderTaskView } from './task-view.js';
+import { renderSi } from './si-view.js';
 import { getRandomArticle } from './hero.js';
 import { state } from '../core/state.js';
 
@@ -64,6 +66,9 @@ export function initEvents() {
                 resetTaskFilter();
                 showTasks();
                 renderTasks();
+            } else if (name === 'si') {
+                showSi();
+                renderSi();
             } else {
                 // articles
                 const input = document.getElementById('search');
@@ -93,7 +98,6 @@ export function initEvents() {
             showResults(cat);
             renderResults(cat);
 
-            // Устанавливаем фильтр по категории сразу
             setTimeout(() => {
                 const filterBtn = document.querySelector(`.results-filter[data-category="${cat}"]`);
                 if (filterBtn) filterBtn.click();
