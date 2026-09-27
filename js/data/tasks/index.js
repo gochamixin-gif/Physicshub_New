@@ -2,18 +2,20 @@
 // РЕЕСТР ЗАДАЧ
 // ============================================================
 
-import { speedTasks }    from './mechanics/speed.js';
-import { massTasks }     from './mechanics/mass.js';
-import { densityTasks }  from './mechanics/density.js';
-import { pressureTasks } from './pressure/pressure.js';
-import { workTasks }     from './energy/work.js';
+import { speedTasks }      from './mechanics/speed.js';
+import { massTasks }       from './mechanics/mass.js';
+import { densityTasks }    from './mechanics/density.js';
+import { pressureTasks }   from './pressure/pressure.js';
+import { workTasks }       from './energy/work.js';
+import { extraTasks }      from './mixed/tasks-10.js';
 
 export const taskDatabase = [
     ...speedTasks,
     ...massTasks,
     ...densityTasks,
     ...pressureTasks,
-    ...workTasks
+    ...workTasks,
+    ...extraTasks
 ];
 
 export function getTaskById(id) {
