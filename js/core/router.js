@@ -7,7 +7,7 @@ import { setActiveTab } from '../ui/hero.js';
 
 const $ = id => document.getElementById(id);
 
-// Все возможные экраны приложения
+// Все экраны приложения (не забудь добавлять сюда новые!)
 const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView', 'si'];
 
 /**
@@ -77,7 +77,7 @@ export function showTaskView(id) {
 }
 
 /**
- * Вкладка «СИ» — справочник
+ * Вкладка «Справочник СИ»
  */
 export function showSi() {
     setView('si');
