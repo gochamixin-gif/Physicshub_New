@@ -2,7 +2,7 @@
 // ПРОГРЕСС — сохранение в localStorage
 // ============================================================
 
-const STORAGE_KEY = 'physicshub_progress';
+const STORAGE_KEY = 'Phyzzy_progress';
 
 /**
  * Читает прогресс из localStorage

@@ -11,7 +11,7 @@ function bootstrap() {
     initEvents();
 
     console.log(
-        '%c⚛️ PhysicsHub запущен',
+        '%c⚛️ Phyzzy запущен',
         'color:#4facfe;font-size:14px;font-weight:bold'
     );
 }

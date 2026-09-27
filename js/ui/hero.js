@@ -40,7 +40,7 @@ export function renderHeader() {
     header.innerHTML = `
     <a class="site-logo" href="#" id="logoLink">
       <span class="site-logo__mark">⚛</span>
-      <span class="site-logo__text">PhysicsHub</span>
+      <span class="site-logo__text">Phyzzy</span>
     </a>
 
     <nav class="site-tabs" id="siteTabs">
