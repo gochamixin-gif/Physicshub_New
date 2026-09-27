@@ -4,18 +4,13 @@
 
 import { getTaskById } from '../data/tasks/index.js';
 import { arrowBackIcon } from '../icons.js';
+import { isTaskSolved, markTaskSolved } from '../core/progress.js';
 
-/**
- * Уровень сложности значками
- */
 function levelStars(level) {
     const labels = { 1: 'Базовая', 2: 'Средняя', 3: 'Олимпиадная' };
     return `${'⭐'.repeat(level)} ${labels[level] || ''}`.trim();
 }
 
-/**
- * Нормализация ответа для сравнения
- */
 function normalize(str) {
     return String(str)
         .toLowerCase()
@@ -24,18 +19,13 @@ function normalize(str) {
         .replace(/,/g, '.');
 }
 
-/**
- * Проверяет ответ ученика
- */
 function checkAnswer(input, task) {
     if (!input) return false;
     const user = normalize(input);
     const variants = (task.answerCheck || []).map(normalize);
 
-    // Точное совпадение с любым вариантом
     if (variants.includes(user)) return true;
 
-    // Попытка найти число и сравнить с числами из вариантов
     const userNum = parseFloat(user.replace(/[^\d.\-]/g, ''));
     if (!isNaN(userNum)) {
         for (const v of variants) {
@@ -43,13 +33,9 @@ function checkAnswer(input, task) {
             if (!isNaN(vNum) && Math.abs(userNum - vNum) < 0.01) return true;
         }
     }
-
     return false;
 }
 
-/**
- * Рендер одной задачи
- */
 export function renderTaskView(id) {
     const container = document.getElementById('taskView');
     const t = getTaskById(id);
@@ -62,6 +48,8 @@ export function renderTaskView(id) {
     `;
         return;
     }
+
+    const solved = isTaskSolved(id);
 
     container.innerHTML = `
     <div class="task-view-inner">
@@ -76,6 +64,7 @@ export function renderTaskView(id) {
           </span>
           <span class="task-view__badge task-view__badge--category">${t.category}</span>
           <span class="task-view__badge task-view__badge--topic">${t.topic}</span>
+          ${solved ? `<span class="task-view__badge task-view__badge--solved">✓ Решена</span>` : ''}
         </div>
         <h1 class="task-view__task">${t.task}</h1>
       </header>
@@ -87,7 +76,6 @@ export function renderTaskView(id) {
         </div>
       ` : ''}
 
-      <!-- Кнопки управления -->
       <div class="task-actions" id="taskActions">
         <button class="task-action task-action--hint" id="hintBtn" type="button">
           💡 Подсказка
@@ -97,13 +85,11 @@ export function renderTaskView(id) {
         </button>
       </div>
 
-      <!-- Блок подсказки (скрыт) -->
       <div class="task-hint hidden" id="hintBlock">
         <div class="task-hint__label">💡 Подсказка</div>
         <div class="task-hint__body">${t.hint || 'Подумай, какую формулу здесь применить.'}</div>
       </div>
 
-      <!-- Поле ввода ответа -->
       <div class="task-answer-input" id="answerInputBlock">
         <label class="task-answer-input__label" for="answerField">
           ✏️ Твой ответ ${t.answerUnit ? `<span class="task-answer-input__unit">(${t.answerUnit})</span>` : ''}
@@ -118,7 +104,6 @@ export function renderTaskView(id) {
         <div class="task-answer-input__result hidden" id="answerResult"></div>
       </div>
 
-      <!-- Блок решения (скрыт) -->
       <div class="task-solution hidden" id="solutionBlock">
         <div class="task-block task-block--solution">
           <div class="task-block__label">Решение</div>
@@ -132,13 +117,10 @@ export function renderTaskView(id) {
     </div>
   `;
 
-    bindTaskActions(t);
+    bindTaskActions(t, id);
 }
 
-/**
- * Обработчики кнопок внутри задачи
- */
-function bindTaskActions(task) {
+function bindTaskActions(task, id) {
     const hintBtn = document.getElementById('hintBtn');
     const hintBlock = document.getElementById('hintBlock');
     const showSolutionBtn = document.getElementById('showSolutionBtn');
@@ -147,23 +129,19 @@ function bindTaskActions(task) {
     const checkBtn = document.getElementById('checkAnswerBtn');
     const resultEl = document.getElementById('answerResult');
 
-    // 💡 Подсказка
     hintBtn?.addEventListener('click', () => {
         hintBlock.classList.toggle('hidden');
         hintBtn.classList.toggle('task-action--active');
     });
 
-    // 👁 Показать решение
     showSolutionBtn?.addEventListener('click', () => {
         solutionBlock.classList.remove('hidden');
         showSolutionBtn.disabled = true;
         showSolutionBtn.textContent = '✅ Решение показано';
         showSolutionBtn.classList.add('task-action--done');
-        // Скрываем поле ввода — уже не актуально
         document.getElementById('answerInputBlock')?.classList.add('hidden');
     });
 
-    // ✏️ Проверить ответ
     function doCheck() {
         const val = answerField.value.trim();
         if (!val) {
@@ -178,7 +156,9 @@ function bindTaskActions(task) {
         if (correct) {
             resultEl.className = 'task-answer-input__result task-answer-input__result--ok';
             resultEl.textContent = '✅ Верно! Отличная работа.';
-            // Автоматически открываем решение
+            // Сохраняем прогресс
+            markTaskSolved(id);
+            // Раскрываем решение
             solutionBlock.classList.remove('hidden');
             showSolutionBtn.disabled = true;
             showSolutionBtn.textContent = '✅ Решение показано';

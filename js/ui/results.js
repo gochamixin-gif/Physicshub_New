@@ -5,29 +5,21 @@
 import { searchArticles } from '../core/search.js';
 import { database } from '../data/database.js';
 import { clockIcon, bookIcon, telescopeIcon } from '../icons.js';
+import { isArticleRead } from '../core/progress.js';
 
 let activeCategory = 'all';
 
-/**
- * Собирает список категорий из базы
- */
 function getCategories() {
     const set = new Set();
     database.forEach(a => a.category && set.add(a.category));
     return ['all', ...Array.from(set).sort()];
 }
 
-/**
- * Фильтрует статьи по категории
- */
 function filterByCategory(items, category) {
     if (category === 'all') return items;
     return items.filter(a => a.category === category);
 }
 
-/**
- * Рендер панели фильтров
- */
 function renderFilters(categories, counts) {
     return `
     <div class="results-filters" id="resultsFilters">
@@ -49,9 +41,6 @@ function renderFilters(categories, counts) {
   `;
 }
 
-/**
- * Считает, сколько результатов в каждой категории
- */
 function countByCategory(items) {
     const counts = { all: items.length };
     items.forEach(a => {
@@ -60,9 +49,6 @@ function countByCategory(items) {
     return counts;
 }
 
-/**
- * Главный рендер
- */
 export function renderResults(query) {
     const container = document.getElementById('results');
     const allFound = searchArticles(query);
@@ -92,9 +78,6 @@ export function renderResults(query) {
     bindFilterEvents(container, query);
 }
 
-/**
- * Рендер списка статей
- */
 function renderItems(items) {
     if (!items.length) {
         return `
@@ -104,21 +87,24 @@ function renderItems(items) {
     `;
     }
 
-    return items.map(item => `
-    <a class="result-item" data-id="${item.id}" href="#${item.id}">
-      <div class="result-title">${item.title}</div>
-      <div class="result-desc">${item.desc}</div>
-      <div class="result-meta">
-        <span class="result-meta__item">${bookIcon(14)} ${item.category}</span>
-        <span class="result-meta__item">${clockIcon(14)} ${item.readTime}</span>
-      </div>
-    </a>
-  `).join('');
+    return items.map(item => {
+        const read = isArticleRead(item.id);
+        return `
+      <a class="result-item${read ? ' result-item--read' : ''}" data-id="${item.id}" href="#${item.id}">
+        <div class="result-title">
+          ${item.title}
+          ${read ? '<span class="result-read-mark" title="Прочитано">✓</span>' : ''}
+        </div>
+        <div class="result-desc">${item.desc}</div>
+        <div class="result-meta">
+          <span class="result-meta__item">${bookIcon(14)} ${item.category}</span>
+          <span class="result-meta__item">${clockIcon(14)} ${item.readTime}</span>
+        </div>
+      </a>
+    `;
+    }).join('');
 }
 
-/**
- * Клики по фильтрам
- */
 function bindFilterEvents(container, query) {
     container.querySelectorAll('.results-filter').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -128,9 +114,6 @@ function bindFilterEvents(container, query) {
     });
 }
 
-/**
- * Сброс фильтра при новом поиске
- */
 export function resetFilter() {
     activeCategory = 'all';
 }

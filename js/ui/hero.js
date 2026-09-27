@@ -4,8 +4,8 @@
 
 import { searchIcon } from '../icons.js';
 import { database } from '../data/database.js';
+import { countReadInCategory } from '../core/progress.js';
 
-// Описания разделов
 const SECTION_INFO = {
     'Введение в физику':  { num: '01', icon: '📖', desc: 'Основы и научный метод' },
     'Строение вещества':  { num: '02', icon: '⚛️', desc: 'Молекулы, атомы, состояния' },
@@ -14,9 +14,6 @@ const SECTION_INFO = {
     'Работа и энергия':   { num: '05', icon: '⚡', desc: 'Механизмы и превращения' }
 };
 
-/**
- * Считает статьи по категориям
- */
 function getStats() {
     const counts = {};
     database.forEach(a => {
@@ -25,9 +22,6 @@ function getStats() {
     return counts;
 }
 
-/**
- * Склонение русских слов
- */
 function plural(n, one, few, many) {
     const mod10 = n % 10;
     const mod100 = n % 100;
@@ -37,7 +31,7 @@ function plural(n, one, few, many) {
 }
 
 /**
- * Шапка сайта — sticky, с вкладками
+ * Шапка сайта
  */
 export function renderHeader() {
     const header = document.getElementById('appHeader');
@@ -73,18 +67,12 @@ export function renderHeader() {
   `;
 }
 
-/**
- * Устанавливает активную вкладку
- */
 export function setActiveTab(tabName) {
     document.querySelectorAll('.site-tab').forEach(tab => {
         tab.classList.toggle('site-tab--active', tab.dataset.tab === tabName);
     });
 }
 
-/**
- * Блок приветствия (компактный)
- */
 function renderIntro() {
     const total = database.length;
     const sections = Object.keys(getStats()).length;
@@ -101,9 +89,6 @@ function renderIntro() {
   `;
 }
 
-/**
- * Карточки разделов
- */
 function renderSections() {
     const stats = getStats();
     const order = Object.keys(SECTION_INFO);
@@ -113,6 +98,9 @@ function renderSections() {
         .map(cat => {
             const info = SECTION_INFO[cat] || { num: '—', icon: '📚', desc: '' };
             const count = stats[cat];
+            const readCount = countReadInCategory(database, cat);
+            const isDone = readCount > 0;
+
             return `
         <a class="section-card" data-category="${cat}" href="#">
           <div class="section-card__top">
@@ -122,7 +110,10 @@ function renderSections() {
           <h3 class="section-card__title">${cat}</h3>
           <p class="section-card__desc">${info.desc}</p>
           <div class="section-card__foot">
-            <span class="section-card__count">${count} ${plural(count, 'статья', 'статьи', 'статей')}</span>
+            <span class="section-card__count">
+              ${count} ${plural(count, 'статья', 'статьи', 'статей')}
+              ${isDone ? `<span class="section-card__progress">· ✓ ${readCount}</span>` : ''}
+            </span>
             <span class="section-card__arrow">→</span>
           </div>
         </a>
@@ -142,9 +133,6 @@ function renderSections() {
   `;
 }
 
-/**
- * Рендер главной страницы энциклопедии
- */
 export function renderHero() {
     const hero = document.getElementById('hero');
     hero.innerHTML = `
@@ -155,9 +143,6 @@ export function renderHero() {
   `;
 }
 
-/**
- * Случайная статья
- */
 export function getRandomArticle() {
     const idx = Math.floor(Math.random() * database.length);
     return database[idx];

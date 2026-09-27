@@ -141,3 +141,27 @@
     background: rgba(79, 172, 254, 0.4);
     color: #fff;
 }
+/* Прочитанная статья в списке */
+.result-item--read {
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.result-item--read .result-title {
+    color: #4ade80;
+}
+
+.result-read-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    background: rgba(74, 222, 128, 0.2);
+    border: 1px solid rgba(74, 222, 128, 0.5);
+    border-radius: 50%;
+    color: #4ade80;
+    font-size: 0.7rem;
+    font-weight: 700;
+    vertical-align: middle;
+}
