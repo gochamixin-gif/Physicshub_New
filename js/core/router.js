@@ -7,12 +7,8 @@ import { setActiveTab } from '../ui/hero.js';
 
 const $ = id => document.getElementById(id);
 
-// Все возможные экраны приложения
-const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView', 'si'];
+const ALL_VIEWS = ['hero', 'results', 'article', 'tasks', 'taskView'];
 
-/**
- * Скрывает все экраны
- */
 function hideAll() {
     ALL_VIEWS.forEach(id => {
         const el = $(id);
@@ -20,9 +16,6 @@ function hideAll() {
     });
 }
 
-/**
- * Главный экран — энциклопедия
- */
 export function showHero() {
     setView('hero');
     hideAll();
@@ -30,9 +23,6 @@ export function showHero() {
     setActiveTab('articles');
 }
 
-/**
- * Результаты поиска
- */
 export function showResults(query) {
     setView('results');
     setQuery(query);
@@ -41,9 +31,6 @@ export function showResults(query) {
     setActiveTab('articles');
 }
 
-/**
- * Одна статья
- */
 export function showArticle(id) {
     setView('article');
     setArticle(id);
@@ -53,9 +40,6 @@ export function showArticle(id) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/**
- * Вкладка «Задачи» — список
- */
 export function showTasks() {
     setView('tasks');
     hideAll();
@@ -64,25 +48,11 @@ export function showTasks() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/**
- * Просмотр одной задачи
- */
 export function showTaskView(id) {
     setView('taskView');
     setArticle(id);
     hideAll();
     $('taskView').classList.remove('hidden');
     setActiveTab('tasks');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/**
- * Вкладка «СИ» — справочник
- */
-export function showSi() {
-    setView('si');
-    hideAll();
-    $('si').classList.remove('hidden');
-    setActiveTab('si');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
