@@ -81,10 +81,11 @@ export function renderHeader() {
       </button>
     </nav>
 
-    <div class="site-search">
+        <div class="site-search">
       <span class="site-search__icon">${searchIcon(18)}</span>
       <input type="text" class="site-search__input" id="search"
              placeholder="Найти тему…" autocomplete="off">
+      <div class="search-suggestions hidden" id="searchSuggestions"></div>
     </div>
 
     <button class="site-btn site-btn--random" id="randomBtn" type="button">

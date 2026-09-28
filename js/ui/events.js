@@ -21,6 +21,11 @@ import { renderQuizzes, resetQuizFilter } from './quizzes.js';
 import { renderQuizView } from './quiz-view.js';
 import { renderLabs, resetLabFilter } from './labs.js';
 import { renderLabView } from './lab-view.js';
+import {
+    renderSuggestions,
+    hideSuggestions,
+    handleSuggestionsKey
+} from './search-suggestions.js';
 import { getRandomArticle } from './hero.js';
 import { state } from '../core/state.js';
 
@@ -29,7 +34,7 @@ let debounceTimer;
 export function initEvents() {
 
     // ============================================================
-    // ВВОД В ПОИСК
+    // ВВОД В ПОИСК + ЖИВЫЕ ПОДСКАЗКИ
     // ============================================================
     document.addEventListener('input', e => {
         if (!e.target.classList.contains('site-search__input')) return;
@@ -37,14 +42,36 @@ export function initEvents() {
         clearTimeout(debounceTimer);
         const q = e.target.value.trim();
 
+        // Подсказки появляются сразу
+        if (q.length >= 2) {
+            renderSuggestions(q);
+        } else {
+            hideSuggestions();
+        }
+
+        // Основной поиск — с задержкой
         debounceTimer = setTimeout(() => {
-            if (!q) return showHero();
+            if (!q) {
+                hideSuggestions();
+                return showHero();
+            }
             if (q.length >= 2) {
                 resetFilter();
                 showResults(q);
                 renderResults(q);
+                hideSuggestions();
             }
-        }, 200);
+        }, 250);
+    });
+
+    // ============================================================
+    // КЛАВИАТУРА В ПОИСКЕ
+    // ============================================================
+    document.addEventListener('keydown', e => {
+        if (!e.target.classList.contains('site-search__input')) return;
+
+        // Навигация в подсказках (↑ ↓ Enter Esc)
+        if (handleSuggestionsKey(e)) return;
     });
 
     // ============================================================
@@ -52,11 +79,67 @@ export function initEvents() {
     // ============================================================
     document.addEventListener('click', e => {
 
-        // --- Логотип — на главную ---
+        // ============================================================
+        // ПОДСКАЗКИ ПОИСКА
+        // ============================================================
+
+        // --- Клик по подсказке ---
+        const suggestionItem = e.target.closest('.search-suggestions__item');
+        if (suggestionItem) {
+            e.preventDefault();
+            const type = suggestionItem.dataset.type;
+            const id = suggestionItem.dataset.id;
+
+            hideSuggestions();
+
+            // Очищаем поиск
+            const input = document.getElementById('search');
+            if (input) input.value = '';
+
+            // Открываем нужный раздел
+            if (type === 'article') {
+                showArticle(id);
+                renderArticle(id);
+            } else if (type === 'task') {
+                showTaskView(id);
+                renderTaskView(id);
+            } else if (type === 'quiz') {
+                showQuizView(id);
+                renderQuizView(id);
+            } else if (type === 'lab') {
+                showLabView(id);
+                renderLabView(id);
+            }
+            return;
+        }
+
+        // --- «Показать все результаты» ---
+        if (e.target.closest('[data-show-all]')) {
+            e.preventDefault();
+            const input = document.getElementById('search');
+            const q = input ? input.value.trim() : '';
+            hideSuggestions();
+            if (q.length >= 2) {
+                resetFilter();
+                showResults(q);
+                renderResults(q);
+            }
+            return;
+        }
+
+        // --- Клик вне поиска — закрыть подсказки ---
+        if (!e.target.closest('.site-search')) {
+            hideSuggestions();
+        }
+
+        // ============================================================
+        // ЛОГОТИП
+        // ============================================================
         if (e.target.closest('#logoLink')) {
             e.preventDefault();
             const input = document.getElementById('search');
             if (input) input.value = '';
+            hideSuggestions();
             showHero();
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
