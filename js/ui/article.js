@@ -1,5 +1,5 @@
 // ============================================================
-// СТАТЬЯ — рендер + отметка «прочитано»
+// СТАТЬЯ — рендер + отметка «прочитано» + печать
 // ============================================================
 
 import { database } from '../data/database.js';
@@ -25,10 +25,16 @@ export function renderArticle(id) {
           ${arrowBackIcon(16)} Назад к поиску
         </button>
 
-        <button class="article-read-btn${read ? ' article-read-btn--done' : ''}"
-                id="articleReadBtn" type="button">
-          ${read ? '✓ Прочитано' : '○ Отметить как прочитанное'}
-        </button>
+        <div class="article-toolbar__actions">
+          <button class="article-read-btn${read ? ' article-read-btn--done' : ''}"
+                  id="articleReadBtn" type="button">
+            ${read ? '✓ Прочитано' : '○ Отметить как прочитанное'}
+          </button>
+
+          <button class="article-print-btn" id="articlePrintBtn" type="button" title="Распечатать или сохранить в PDF">
+            🖨 Печать
+          </button>
+        </div>
       </div>
 
       <header class="article-header">
@@ -53,24 +59,37 @@ export function renderArticle(id) {
     </div>
   `;
 
-    bindReadButtons(id);
+    bindArticleActions(id);
 }
 
-function bindReadButtons(id) {
-    const buttons = [
+/**
+ * Обработчики кнопок статьи
+ */
+function bindArticleActions(id) {
+    // Кнопки «Прочитано»
+    const readButtons = [
         document.getElementById('articleReadBtn'),
         document.getElementById('articleReadBtnBottom')
     ];
 
-    buttons.forEach(btn => {
+    readButtons.forEach(btn => {
         if (!btn) return;
         btn.addEventListener('click', () => {
             const nowRead = toggleArticleRead(id);
             updateReadButtons(nowRead);
         });
     });
+
+    // Кнопка «Печать»
+    const printBtn = document.getElementById('articlePrintBtn');
+    printBtn?.addEventListener('click', () => {
+        window.print();
+    });
 }
 
+/**
+ * Обновляет текст и стиль кнопок «Прочитано»
+ */
 function updateReadButtons(read) {
     const buttons = [
         document.getElementById('articleReadBtn'),

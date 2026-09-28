@@ -220,4 +220,24 @@ export function initEvents() {
             return;
         }
     });
+
+    // ============================================================
+    // КНОПКА «НАВЕРХ»
+    // ============================================================
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        // Показать/скрыть при прокрутке
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollBtn.classList.remove('hidden');
+            } else {
+                scrollBtn.classList.add('hidden');
+            }
+        }, { passive: true });
+
+        // Клик — наверх
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 }

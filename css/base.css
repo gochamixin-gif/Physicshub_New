@@ -52,3 +52,52 @@ body::before {
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
 
 .hidden { display: none !important; }
+/* ============================================================
+   КНОПКА «НАВЕРХ»
+   ============================================================ */
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(79,172,254,0.9), rgba(167,139,250,0.9));
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+    transition: all 0.3s ease;
+    animation: scrollTopIn 0.3s ease;
+}
+
+.scroll-top-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.5);
+}
+
+.scroll-top-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@keyframes scrollTopIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.8); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 600px) {
+    .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+}
