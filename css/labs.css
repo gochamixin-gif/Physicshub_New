@@ -404,3 +404,90 @@
     .lab-block { padding: 16px 18px; }
     .lab-view__title { font-size: 1.3rem; }
 }
+/* ============================================================
+   ВИДЕО-РАЗБОР В ЛАБОРАТОРНОЙ
+   ============================================================ */
+
+.lab-block--video {
+    background: rgba(255, 107, 107, 0.05);
+    border-color: #ff6b6b;
+}
+
+.lab-block--video .lab-block__label {
+    color: #ff8080;
+}
+
+.lab-block__video-desc {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.lab-video-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: #000;
+    margin-bottom: 14px;
+}
+
+.lab-video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.lab-video-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.85rem;
+    color: var(--text-mute);
+}
+
+.lab-video-meta__channel {
+    color: #ff8080;
+    font-weight: 600;
+}
+
+.lab-video-meta__duration {
+    color: var(--accent-3);
+}
+
+.lab-video-meta__link {
+    margin-left: auto;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.lab-video-meta__link:hover {
+    color: var(--accent-2);
+}
+
+@media (max-width: 600px) {
+    .lab-video-meta__link {
+        margin-left: 0;
+    }
+}
+/* Правила работы */
+.lab-block--rules {
+    background: rgba(255, 184, 77, 0.06);
+    border-color: #ffb84d;
+}
+.lab-block--rules .lab-block__label { color: #ffb84d; }
+
+/* Дополнительное задание */
+.lab-block--extra {
+    background: rgba(0, 242, 254, 0.05);
+    border-color: var(--accent-2);
+}
+.lab-block--extra .lab-block__label { color: var(--accent-2); }

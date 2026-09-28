@@ -1,32 +1,31 @@
 // ============================================================
-// РЕЕСТР ЛАБОРАТОРНЫХ РАБОТ
+// РЕЕСТР ЛАБОРАТОРНЫХ РАБОТ (Перышкин, 7 класс)
 // ============================================================
 
-// Механика
-import { labSmallBodies } from './mechanics/lab-small-bodies.js';
-import { labMassScales }  from './mechanics/lab-mass-scales.js';
-import { labVolume }      from './mechanics/lab-volume.js';
-import { labDensity }     from './mechanics/lab-density.js';
-import { labFriction }    from './mechanics/lab-friction.js';
-
-// Давление
-import { labArchimedes }     from './pressure/lab-archimedes.js';
-import { labPressureLiquid } from './pressure/lab-pressure-liquid.js';
-
-// Работа и энергия
-import { labLever }     from './energy/lab-lever.js';
-import { labWorkPower } from './energy/lab-work-power.js';
+import { labMeasurementPrice } from './mechanics/lab-measurement-price.js';
+import { labSmallBodies }      from './mechanics/lab-small-bodies.js';
+import { labMassScales }       from './mechanics/lab-mass-scales.js';
+import { labVolume }           from './mechanics/lab-volume.js';
+import { labDensity }          from './mechanics/lab-density.js';
+import { labDynamometer }      from './mechanics/lab-dynamometer.js';
+import { labFriction }         from './mechanics/lab-friction.js';
+import { labArchimedes }       from './pressure/lab-archimedes.js';
+import { labFloating }         from './pressure/lab-floating.js';
+import { labLever }            from './energy/lab-lever.js';
+import { labEfficiency }       from './energy/lab-efficiency.js';
 
 export const labDatabase = [
-    labSmallBodies,
-    labMassScales,
-    labVolume,
-    labDensity,
-    labFriction,
-    labArchimedes,
-    labPressureLiquid,
-    labLever,
-    labWorkPower
+    labMeasurementPrice,  // №1
+    labSmallBodies,       // №2
+    labMassScales,        // №3
+    labVolume,            // №4
+    labDensity,           // №5
+    labDynamometer,       // №6
+    labFriction,          // №7
+    labArchimedes,        // №8
+    labFloating,          // №9
+    labLever,             // №10
+    labEfficiency         // №11
 ];
 
 export function getLabById(id) {

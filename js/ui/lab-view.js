@@ -34,11 +34,56 @@ export function renderLabView(id) {
         <h1 class="lab-view__title">🧪 ${lab.title}</h1>
         <p class="lab-view__desc">${lab.desc}</p>
       </header>
+      
+            ${lab.video ? `
+        <section class="lab-block lab-block--video">
+          <div class="lab-block__label">🎬 Видео-разбор</div>
+          <p class="lab-block__video-desc">${lab.video.description}</p>
+          <div class="lab-video-wrap">
+            <iframe
+              src="${lab.video.embedUrl}"
+              title="${lab.video.title}"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="lab-video-meta">
+            <span class="lab-video-meta__channel">📺 ${lab.video.channel}</span>
+            <span class="lab-video-meta__duration">⏱ ${lab.video.duration}</span>
+            <a class="lab-video-meta__link" href="${lab.video.url}" target="_blank" rel="noopener">
+              Открыть в YouTube →
+            </a>
+          </div>
+        </section>
+      ` : ''}
 
-      <section class="lab-block lab-block--goal">
-        <div class="lab-block__label">🎯 Цель работы</div>
-        <p class="lab-block__body">${lab.goal}</p>
+            ${lab.rules && lab.rules.length ? `
+        <section class="lab-block lab-block--rules">
+          <div class="lab-block__label">📋 Правила работы</div>
+          <ol class="lab-steps">
+            ${lab.rules.map(r => `<li>${r.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+          </ol>
+        </section>
+      ` : ''}
+
+      <section class="lab-block lab-block--steps">
+        <div class="lab-block__label">📝 Ход работы</div>
+        <ol class="lab-steps">
+          ${lab.steps.map(s => `<li>${s.replace(/^\d+\.\s*/, '')}</li>`).join('')}
+        </ol>
       </section>
+
+      ${lab.extra ? `
+        <section class="lab-block lab-block--extra">
+          <div class="lab-block__label">📌 Дополнительно</div>
+          ${Array.isArray(lab.extra)
+        ? `<ul class="lab-list">${lab.extra.map(e => `<li>${e}</li>`).join('')}</ul>`
+        : `<p class="lab-block__body">${lab.extra}</p>`
+    }
+        </section>
+      ` : ''}
 
       <section class="lab-block lab-block--equipment">
         <div class="lab-block__label">🧰 Оборудование</div>
