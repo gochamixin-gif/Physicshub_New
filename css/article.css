@@ -52,7 +52,7 @@
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: var(--space-md);
-    background: var(--gradient-accent);
+    background: var(--gradient-purple);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

@@ -64,6 +64,9 @@
     --gradient-purple-soft: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
     --gradient-hero: linear-gradient(180deg, #0a0618 0%, #12102a 50%, #0a0618 100%);
     --gradient-page: radial-gradient(ellipse at top, #1f1049 0%, #0a0618 50%, #060311 100%);
+    /* Алиасы — для совместимости со старыми файлами */
+    --gradient-accent: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+    --gradient-accent-soft: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
 
     /* ============================================
        РАДИУСЫ
