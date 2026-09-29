@@ -52,10 +52,12 @@
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: var(--space-md);
-    background: var(--gradient-purple);
+    color: #ffffff;
+    background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 50%, #8b5cf6 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(167, 139, 250, 0.3);
 }
 
 .article-header__meta {
