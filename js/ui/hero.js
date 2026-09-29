@@ -195,6 +195,64 @@ function renderSections() {
 export function renderHero() {
     const hero = document.getElementById('hero');
     hero.innerHTML = `
+    <!-- Атом на фоне -->
+    <div class="hero-atom" aria-hidden="true">
+      <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="orbitGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.7"/>
+            <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#c4b5fd" stop-opacity="0.2"/>
+          </linearGradient>
+          <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#a78bfa"/>
+            <stop offset="50%" stop-color="#7c3aed"/>
+            <stop offset="100%" stop-color="#5b21b6" stop-opacity="0.3"/>
+          </radialGradient>
+          <filter id="glowFilter">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Орбита 1 -->
+        <g class="hero-atom__orbit hero-atom__orbit--1">
+          <ellipse cx="300" cy="300" rx="260" ry="90"
+                   fill="none" stroke="url(#orbitGrad)" stroke-width="2"
+                   transform="rotate(0 300 300)"/>
+          <circle class="hero-atom__electron hero-atom__electron--1"
+                  cx="560" cy="300" r="8" fill="#a78bfa" filter="url(#glowFilter)"/>
+        </g>
+
+        <!-- Орбита 2 -->
+        <g class="hero-atom__orbit hero-atom__orbit--2">
+          <ellipse cx="300" cy="300" rx="260" ry="90"
+                   fill="none" stroke="url(#orbitGrad)" stroke-width="2"
+                   transform="rotate(60 300 300)"/>
+          <circle class="hero-atom__electron hero-atom__electron--2"
+                  cx="560" cy="300" r="8" fill="#c4b5fd" filter="url(#glowFilter)"/>
+        </g>
+
+        <!-- Орбита 3 -->
+        <g class="hero-atom__orbit hero-atom__orbit--3">
+          <ellipse cx="300" cy="300" rx="260" ry="90"
+                   fill="none" stroke="url(#orbitGrad)" stroke-width="2"
+                   transform="rotate(-60 300 300)"/>
+          <circle class="hero-atom__electron hero-atom__electron--3"
+                  cx="560" cy="300" r="8" fill="#8b5cf6" filter="url(#glowFilter)"/>
+        </g>
+
+        <!-- Ядро -->
+        <circle class="hero-atom__core" cx="300" cy="300" r="22"
+                fill="url(#coreGrad)" filter="url(#glowFilter)"/>
+        <circle class="hero-atom__core-pulse" cx="300" cy="300" r="22"
+                fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+    </div>
+
     <div class="page">
       ${renderIntro()}
       ${renderSections()}
@@ -207,6 +265,16 @@ export function renderHero() {
         card.classList.add('reveal');
         card.style.transitionDelay = `${i * 0.06}s`;
     });
+
+    // Секции с заголовком
+    const intro = hero.querySelector('.intro');
+    if (intro) intro.classList.add('anim-fade-in-up');
+
+    // Запуск наблюдения
+    import('../core/animations.js').then(({ observeNewElements }) => {
+        observeNewElements();
+    });
+}
 
     // Секции с заголовком
     const intro = hero.querySelector('.intro');
