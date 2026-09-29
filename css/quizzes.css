@@ -920,3 +920,68 @@
         font-size: 1.2rem;
     }
 }
+/* ============================================================
+   АНИМАЦИИ ТЕСТОВ
+   ============================================================ */
+
+.quiz-item {
+    animation: fadeInUp 0.5s ease both;
+}
+
+.quiz-item:nth-child(1) { animation-delay: 0.05s; }
+.quiz-item:nth-child(2) { animation-delay: 0.1s; }
+.quiz-item:nth-child(3) { animation-delay: 0.15s; }
+
+/* Вопрос теста */
+.quiz-view__question {
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.quiz-option {
+    animation: fadeInUp 0.4s ease both;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.quiz-option:nth-child(1) { animation-delay: 0.05s; }
+.quiz-option:nth-child(2) { animation-delay: 0.1s; }
+.quiz-option:nth-child(3) { animation-delay: 0.15s; }
+.quiz-option:nth-child(4) { animation-delay: 0.2s; }
+
+.quiz-option:hover {
+    transform: translateX(4px);
+}
+
+.quiz-option--correct {
+    animation: checkmark 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.quiz-option--wrong {
+    animation: shake 0.5s ease;
+}
+
+/* Прогресс-бар — плавное заполнение */
+.quiz-view__progress-bar {
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Таймер — пульс при опасности */
+.quiz-timer--danger {
+    animation: pulse 0.8s ease-in-out infinite;
+}
+
+/* Медаль в результате — «выпрыгивает» */
+.quiz-result__medal {
+    animation: fadeInScale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.quiz-result__score {
+    animation: fadeInUp 0.5s ease 0.15s both;
+}
+
+.quiz-result__percent {
+    animation: fadeInUp 0.5s ease 0.25s both;
+}
+
+.quiz-result__record {
+    animation: pulse 1.5s ease-in-out infinite;
+}

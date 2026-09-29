@@ -491,3 +491,29 @@
     border-color: var(--accent-2);
 }
 .lab-block--extra .lab-block__label { color: var(--accent-2); }
+/* ============================================================
+   АНИМАЦИИ ЛАБОРАТОРНЫХ
+   ============================================================ */
+
+.lab-item {
+    animation: fadeInUp 0.5s ease both;
+}
+
+.lab-item:nth-child(1) { animation-delay: 0.05s; }
+.lab-item:nth-child(2) { animation-delay: 0.1s; }
+
+.lab-item:hover {
+    transform: translateX(6px);
+}
+
+.lab-block {
+    animation: fadeInUp 0.5s ease both;
+}
+
+.lab-block:nth-child(odd)  { animation-delay: 0.1s; }
+.lab-block:nth-child(even) { animation-delay: 0.15s; }
+
+/* Видео-обёртка — плавное появление */
+.lab-video-wrap {
+    animation: fadeInScale 0.5s ease both;
+}

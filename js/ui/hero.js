@@ -194,14 +194,28 @@ function renderSections() {
  */
 export function renderHero() {
     const hero = document.getElementById('hero');
-    if (!hero) return;
-
     hero.innerHTML = `
     <div class="page">
       ${renderIntro()}
       ${renderSections()}
     </div>
   `;
+
+    // Каскадное появление карточек
+    const cards = hero.querySelectorAll('.section-card');
+    cards.forEach((card, i) => {
+        card.classList.add('reveal');
+        card.style.transitionDelay = `${i * 0.06}s`;
+    });
+
+    // Секции с заголовком
+    const intro = hero.querySelector('.intro');
+    if (intro) intro.classList.add('anim-fade-in-up');
+
+    // Запуск наблюдения
+    import('../core/animations.js').then(({ observeNewElements }) => {
+        observeNewElements();
+    });
 }
 
 // ============================================================

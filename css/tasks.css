@@ -837,3 +837,57 @@
         justify-content: center;
     }
 }
+/* ============================================================
+   АНИМАЦИИ ЗАДАЧ
+   ============================================================ */
+
+.task-item {
+    animation: fadeInUp 0.5s ease both;
+}
+
+.task-item:nth-child(1) { animation-delay: 0.05s; }
+.task-item:nth-child(2) { animation-delay: 0.1s; }
+.task-item:nth-child(3) { animation-delay: 0.15s; }
+.task-item:nth-child(4) { animation-delay: 0.2s; }
+.task-item:nth-child(5) { animation-delay: 0.25s; }
+
+.task-item:hover {
+    transform: translateX(6px);
+}
+
+/* Задача открылась — появление */
+.task-view__task {
+    animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.task-block {
+    animation: fadeInUp 0.5s ease both;
+}
+
+.task-block--given    { animation-delay: 0.1s; }
+.task-block--solution { animation-delay: 0.15s; }
+.task-block--answer   { animation-delay: 0.2s; }
+
+/* Кнопка ответа — пульсация при фокусе */
+.task-answer-input__btn {
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.task-answer-input__btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Правильный ответ — зелёная вспышка */
+.task-answer-input__result--ok {
+    animation: checkmark 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Неверный ответ — тряска */
+.task-answer-input__result--fail {
+    animation: shake 0.5s ease;
+}
+
+/* Подсказка — плавное раскрытие */
+.task-hint {
+    animation: fadeInUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}

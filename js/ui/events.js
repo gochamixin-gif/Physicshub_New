@@ -92,11 +92,9 @@ export function initEvents() {
 
             hideSuggestions();
 
-            // Очищаем поиск
             const input = document.getElementById('search');
             if (input) input.value = '';
 
-            // Открываем нужный раздел
             if (type === 'article') {
                 showArticle(id);
                 renderArticle(id);
@@ -166,7 +164,6 @@ export function initEvents() {
                 showLabs();
                 renderLabs();
             } else {
-                // articles
                 const input = document.getElementById('search');
                 if (input) input.value = '';
                 showHero();
@@ -178,7 +175,7 @@ export function initEvents() {
         // ЭНЦИКЛОПЕДИЯ
         // ============================================================
 
-        // --- Кнопка «Справочник СИ» на главной ---
+        // --- Кнопка «Справочник СИ» ---
         const ctaBtn = e.target.closest('[data-open-article]');
         if (ctaBtn) {
             e.preventDefault();
@@ -244,7 +241,6 @@ export function initEvents() {
         // ЗАДАЧИ
         // ============================================================
 
-        // --- Открытие задачи ---
         const taskItem = e.target.closest('.task-item');
         if (taskItem) {
             e.preventDefault();
@@ -254,7 +250,6 @@ export function initEvents() {
             return;
         }
 
-        // --- Кнопка «Назад к задачам» ---
         if (e.target.closest('#taskBackBtn')) {
             showTasks();
             renderTasks();
@@ -265,7 +260,6 @@ export function initEvents() {
         // ТЕСТЫ
         // ============================================================
 
-        // --- Открытие теста ---
         const quizItem = e.target.closest('.quiz-item');
         if (quizItem) {
             e.preventDefault();
@@ -275,7 +269,6 @@ export function initEvents() {
             return;
         }
 
-        // --- Кнопка «Назад к тестам» ---
         if (e.target.closest('#quizBackBtn')) {
             showQuizzes();
             renderQuizzes();
@@ -286,7 +279,6 @@ export function initEvents() {
         // ЛАБОРАТОРНЫЕ
         // ============================================================
 
-        // --- Открытие лабораторной ---
         const labItem = e.target.closest('.lab-item');
         if (labItem) {
             e.preventDefault();
@@ -296,7 +288,6 @@ export function initEvents() {
             return;
         }
 
-        // --- Кнопка «Назад к лабораторным» ---
         if (e.target.closest('#labBackBtn')) {
             showLabs();
             renderLabs();
@@ -309,7 +300,6 @@ export function initEvents() {
     // ============================================================
     const scrollBtn = document.getElementById('scrollTopBtn');
     if (scrollBtn) {
-        // Показать/скрыть при прокрутке
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
                 scrollBtn.classList.remove('hidden');
@@ -318,9 +308,33 @@ export function initEvents() {
             }
         }, { passive: true });
 
-        // Клик — наверх
         scrollBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // ============================================================
+    // RIPPLE НА КЛИКИ
+    // ============================================================
+    document.addEventListener('click', e => {
+        const btn = e.target.closest(
+            '.site-btn, .quiz-btn, .task-action, .article-print-btn, .article-read-btn, .task-answer-input__btn, .intro-cta'
+        );
+        if (!btn) return;
+
+        import('../core/animations.js').then(({ attachRipple }) => {
+            attachRipple(btn);
+        });
+    });
+
+    // ============================================================
+    // ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ (обновление при навигации)
+    // ============================================================
+    document.addEventListener('click', () => {
+        setTimeout(() => {
+            import('../core/animations.js').then(({ observeNewElements }) => {
+                observeNewElements();
+            });
+        }, 150);
+    });
 }

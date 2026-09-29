@@ -1,0 +1,263 @@
+/* ============================================================
+   АНИМАЦИИ — плавные, современные, в стиле Сферума
+   ============================================================ */
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-20px) scale(1.03); }
+}
+
+@keyframes floatSoft {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.06); opacity: 0.9; }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25); }
+    50%      { box-shadow: 0 12px 36px rgba(124, 58, 237, 0.45); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes ripple {
+    from { transform: scale(0); opacity: 0.5; }
+    to   { transform: scale(4); opacity: 0; }
+}
+
+@keyframes checkmark {
+    0%   { transform: scale(0); }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+}
+
+/* ============================================================
+   БАЗОВЫЕ КЛАССЫ
+   ============================================================ */
+
+.anim-fade-in      { animation: fadeIn 0.4s ease both; }
+.anim-fade-in-up   { animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-fade-in-down { animation: fadeInDown 0.4s ease both; }
+.anim-fade-in-scale { animation: fadeInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.anim-slide-in-right { animation: slideInRight 0.5s ease both; }
+.anim-slide-in-left  { animation: slideInLeft 0.5s ease both; }
+.anim-float        { animation: float 6s ease-in-out infinite; }
+.anim-float-soft   { animation: floatSoft 4s ease-in-out infinite; }
+.anim-pulse        { animation: pulse 2s ease-in-out infinite; }
+.anim-glow         { animation: glow 2.5s ease-in-out infinite; }
+.anim-spin         { animation: spin 1.2s linear infinite; }
+
+/* Задержки */
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.1s; }
+.delay-3 { animation-delay: 0.15s; }
+.delay-4 { animation-delay: 0.2s; }
+.delay-5 { animation-delay: 0.25s; }
+.delay-6 { animation-delay: 0.3s; }
+.delay-7 { animation-delay: 0.35s; }
+.delay-8 { animation-delay: 0.4s; }
+
+/* ============================================================
+   ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ (через IntersectionObserver)
+   ============================================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal--left {
+    transform: translateX(-40px);
+}
+
+.reveal--right {
+    transform: translateX(40px);
+}
+
+.reveal--scale {
+    transform: scale(0.92);
+}
+
+.reveal--left.reveal--visible,
+.reveal--right.reveal--visible,
+.reveal--scale.reveal--visible {
+    transform: translateX(0) scale(1);
+}
+
+/* ============================================================
+   ХОВЕР-ЭФФЕКТЫ
+   ============================================================ */
+
+.hover-lift {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(31, 27, 58, 0.12);
+}
+
+.hover-scale {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.hover-glow {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15),
+    0 12px 32px rgba(124, 58, 237, 0.2);
+}
+
+/* ============================================================
+   RIPPLE-ЭФФЕКТ (для кнопок)
+   ============================================================ */
+
+.ripple-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-btn .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+/* ============================================================
+   ЗАГРУЗКА (скелетон)
+   ============================================================ */
+
+.skeleton {
+    background: linear-gradient(
+            90deg,
+            var(--surface-soft) 0%,
+            var(--purple-50) 50%,
+            var(--surface-soft) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+    border-radius: 8px;
+}
+
+/* ============================================================
+   ЗЕЛЁНАЯ ГАЛОЧКА (для задач)
+   ============================================================ */
+
+.anim-check {
+    animation: checkmark 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ============================================================
+   ТРЯСКА (для неверного ответа)
+   ============================================================ */
+
+.anim-shake {
+    animation: shake 0.5s ease;
+}
+
+/* ============================================================
+   ПРОГРЕСС-БАР (анимация полоски)
+   ============================================================ */
+
+.progress-animated {
+    background: linear-gradient(
+            90deg,
+            var(--purple-500),
+            var(--purple-400),
+            var(--purple-500)
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+}
+
+/* ============================================================
+   УМЕНЬШЕНИЕ АНИМАЦИЙ (для тех, кто не любит)
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -4,6 +4,7 @@
 
 import { setView, setQuery, setArticle } from './state.js';
 import { setActiveTab } from '../ui/hero.js';
+import { animateScreen } from './animations.js';
 
 const $ = id => document.getElementById(id);
 
@@ -21,20 +22,30 @@ function hideAll() {
     });
 }
 
-// --- Энциклопедия ---
+function show(id) {
+    const el = $(id);
+    if (!el) return;
+    el.classList.remove('hidden');
+    animateScreen(el);
+}
+
+// ============================================================
+// ЭНЦИКЛОПЕДИЯ
+// ============================================================
 
 export function showHero() {
     setView('hero');
     hideAll();
-    $('hero').classList.remove('hidden');
+    show('hero');
     setActiveTab('articles');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 export function showResults(query) {
     setView('results');
     setQuery(query);
     hideAll();
-    $('results').classList.remove('hidden');
+    show('results');
     setActiveTab('articles');
 }
 
@@ -42,17 +53,19 @@ export function showArticle(id) {
     setView('article');
     setArticle(id);
     hideAll();
-    $('article').classList.remove('hidden');
+    show('article');
     setActiveTab('articles');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- Задачи ---
+// ============================================================
+// ЗАДАЧИ
+// ============================================================
 
 export function showTasks() {
     setView('tasks');
     hideAll();
-    $('tasks').classList.remove('hidden');
+    show('tasks');
     setActiveTab('tasks');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -61,17 +74,19 @@ export function showTaskView(id) {
     setView('taskView');
     setArticle(id);
     hideAll();
-    $('taskView').classList.remove('hidden');
+    show('taskView');
     setActiveTab('tasks');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- Тесты ---
+// ============================================================
+// ТЕСТЫ
+// ============================================================
 
 export function showQuizzes() {
     setView('quizzes');
     hideAll();
-    $('quizzes').classList.remove('hidden');
+    show('quizzes');
     setActiveTab('quizzes');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -80,17 +95,19 @@ export function showQuizView(id) {
     setView('quizView');
     setArticle(id);
     hideAll();
-    $('quizView').classList.remove('hidden');
+    show('quizView');
     setActiveTab('quizzes');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- Лабораторные ---
+// ============================================================
+// ЛАБОРАТОРНЫЕ
+// ============================================================
 
 export function showLabs() {
     setView('labs');
     hideAll();
-    $('labs').classList.remove('hidden');
+    show('labs');
     setActiveTab('labs');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -99,7 +116,7 @@ export function showLabView(id) {
     setView('labView');
     setArticle(id);
     hideAll();
-    $('labView').classList.remove('hidden');
+    show('labView');
     setActiveTab('labs');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
