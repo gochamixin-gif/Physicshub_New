@@ -1,31 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 body {
     font-family: var(--font-sans);
     font-size: var(--text-base);
     line-height: 1.6;
     color: var(--text);
-    background: var(--gradient-bg);
-    background-attachment: fixed;
+    background: var(--bg-main);
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Звёздный фон */
+/* Убираем старый звёздный фон */
 body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-            radial-gradient(2px 2px at 20% 30%, white, transparent),
-            radial-gradient(1px 1px at 60% 70%, white, transparent),
-            radial-gradient(1px 1px at 80% 20%, white, transparent),
-            radial-gradient(2px 2px at 40% 80%, white, transparent),
-            radial-gradient(1px 1px at 90% 50%, white, transparent);
-    background-size: 200% 200%;
-    opacity: 0.35;
-    animation: drift 90s linear infinite;
-    pointer-events: none;
-    z-index: 0;
+    display: none;
+}
+
+/* Плавные анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
 }
 
 @keyframes drift {
@@ -33,71 +38,18 @@ body::before {
     to   { background-position: 200% 200%; }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
 ::selection {
-    background: var(--accent);
-    color: #fff;
+    background: var(--purple-200);
+    color: var(--purple-900);
 }
 
+/* Скроллбар */
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-track { background: var(--surface-soft); }
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--purple-300);
     border-radius: 5px;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
+::-webkit-scrollbar-thumb:hover { background: var(--purple-400); }
 
 .hidden { display: none !important; }
-/* ============================================================
-   КНОПКА «НАВЕРХ»
-   ============================================================ */
-
-.scroll-top-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    width: 52px;
-    height: 52px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(79,172,254,0.9), rgba(167,139,250,0.9));
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 700;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
-    transition: all 0.3s ease;
-    animation: scrollTopIn 0.3s ease;
-}
-
-.scroll-top-btn:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.5);
-}
-
-.scroll-top-btn:active {
-    transform: translateY(0) scale(0.98);
-}
-
-@keyframes scrollTopIn {
-    from { opacity: 0; transform: translateY(20px) scale(0.8); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@media (max-width: 600px) {
-    .scroll-top-btn {
-        bottom: 20px;
-        right: 20px;
-        width: 44px;
-        height: 44px;
-        font-size: 1.2rem;
-    }
-}

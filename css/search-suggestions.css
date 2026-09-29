@@ -1,5 +1,5 @@
 /* ============================================================
-   ЖИВОЙ ПОИСК — выпадающие подсказки
+   ЖИВОЙ ПОИСК — выпадающие подсказки (светлая тема)
    ============================================================ */
 
 .search-suggestions {
@@ -7,10 +7,10 @@
     top: calc(100% + 8px);
     left: 0;
     right: 0;
-    background: #1a1730;
+    background: #ffffff;
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(31, 27, 58, 0.12);
     overflow: hidden;
     z-index: 500;
     animation: suggestionsIn 0.15s ease;
@@ -33,33 +33,47 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 10px 14px;
-    border-radius: 8px;
+    padding: 12px 14px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background 0.15s ease;
 }
 
 .search-suggestions__item:hover,
 .search-suggestions__item--active {
-    background: rgba(79, 172, 254, 0.12);
+    background: var(--purple-50, #f5f3ff);
 }
 
 .search-suggestions__icon {
-    font-size: 1.1rem;
-    line-height: 1.4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--purple-100, #ede9fe);
+    font-size: 1.05rem;
+    line-height: 1;
     flex-shrink: 0;
-    margin-top: 1px;
+    transition: all 0.15s;
+}
+
+.search-suggestions__item:hover .search-suggestions__icon,
+.search-suggestions__item--active .search-suggestions__icon {
+    background: var(--gradient-purple, linear-gradient(135deg, #7c3aed, #a78bfa));
+    transform: scale(1.05);
 }
 
 .search-suggestions__content {
     flex: 1;
     min-width: 0;
+    padding-top: 2px;
 }
 
 .search-suggestions__title {
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--text);
+    color: var(--text, #1f1b3a);
     line-height: 1.35;
     margin-bottom: 3px;
     overflow: hidden;
@@ -70,36 +84,36 @@
 }
 
 .search-suggestions__title mark {
-    background: rgba(79, 172, 254, 0.35);
-    color: #fff;
-    padding: 0 2px;
-    border-radius: 3px;
+    background: var(--purple-200, #d6bcfa);
+    color: var(--purple-900, #3b1e8a);
+    padding: 0 3px;
+    border-radius: 4px;
     font-weight: 700;
 }
 
 .search-suggestions__subtitle {
     font-size: 0.8rem;
-    color: var(--text-mute);
+    color: var(--text-mute, #9ca3af);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .search-suggestions__empty {
-    padding: 20px 16px;
+    padding: 24px 16px;
     text-align: center;
-    color: var(--text-mute);
+    color: var(--text-mute, #9ca3af);
     font-size: 0.9rem;
 }
 
 .search-suggestions__all {
     display: block;
     width: 100%;
-    padding: 12px 16px;
-    background: rgba(79, 172, 254, 0.08);
+    padding: 14px 16px;
+    background: var(--purple-50, #f5f3ff);
     border: none;
-    border-top: 1px solid var(--border);
-    color: var(--accent);
+    border-top: 1px solid var(--border, #e5e7eb);
+    color: var(--accent, #7c3aed);
     font-family: inherit;
     font-size: 0.9rem;
     font-weight: 600;
@@ -109,18 +123,26 @@
 }
 
 .search-suggestions__all:hover {
-    background: rgba(79, 172, 254, 0.18);
-    color: #fff;
+    background: var(--purple-100, #ede9fe);
+    color: var(--purple-700, #5b21b6);
 }
 
 /* Мобильный */
 @media (max-width: 700px) {
     .search-suggestions {
         max-height: 60vh;
+        border-radius: 14px;
     }
 
     .search-suggestions__item {
         padding: 10px 12px;
+        gap: 10px;
+    }
+
+    .search-suggestions__icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
     }
 
     .search-suggestions__title {

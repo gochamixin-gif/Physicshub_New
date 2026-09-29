@@ -1,59 +1,107 @@
 :root {
-    /* Фон */
-    --bg-1: #0f0c29;
-    --bg-2: #302b63;
-    --bg-3: #24243e;
-    --surface: rgba(255, 255, 255, 0.05);
-    --surface-hover: rgba(255, 255, 255, 0.09);
-    --border: rgba(255, 255, 255, 0.12);
+    /* ============================================
+       ФОН
+       ============================================ */
+    --bg-main: #ffffff;
+    --bg-soft: #f7f5ff;
+    --bg-lavender: #ede9fe;
+    --bg-purple-soft: #f3efff;
 
-    /* Акценты */
-    --accent: #4facfe;
-    --accent-2: #00f2fe;
-    --accent-3: #a78bfa;
-    --accent-4: #ff6b6b;
+    /* ============================================
+       ФИОЛЕТОВАЯ ПАЛИТРА (акценты)
+       ============================================ */
+    --purple-900: #3b1e8a;
+    --purple-700: #5b21b6;
+    --purple-600: #6d28d9;
+    --purple-500: #7c3aed;
+    --purple-400: #9f7aea;
+    --purple-300: #b794f4;
+    --purple-200: #d6bcfa;
+    --purple-100: #ede9fe;
+    --purple-50:  #f5f3ff;
 
-    /* Текст */
-    --text: #e8e8f0;
-    --text-dim: #a0a0b0;
-    --text-mute: #707080;
+    /* ============================================
+       ОСНОВНЫЕ АКЦЕНТЫ
+       ============================================ */
+    --accent:      #7c3aed;   /* основной фиолетовый */
+    --accent-2:    #a78bfa;   /* светлее */
+    --accent-3:    #6d28d9;   /* темнее */
+    --accent-soft: #ede9fe;   /* очень светлый */
 
-    /* Семантика */
-    --info: #4facfe;
-    --warn: #ffb84d;
-    --danger: #ff6b6b;
-    --success: #4ade80;
+    /* ============================================
+       СЕМАНТИКА
+       ============================================ */
+    --color-info:    #7c3aed;
+    --color-success: #10b981;
+    --color-warn:    #f59e0b;
+    --color-danger:  #ef4444;
 
-    /* Градиенты */
-    --gradient-accent: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
-    --gradient-bg: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+    /* ============================================
+       ТЕКСТ
+       ============================================ */
+    --text:        #1f1b3a;
+    --text-strong: #0f0c29;
+    --text-dim:    #6b7280;
+    --text-mute:   #9ca3af;
+    --text-invert: #ffffff;
 
-    /* Радиусы */
+    /* ============================================
+       ПОВЕРХНОСТИ
+       ============================================ */
+    --surface:        #ffffff;
+    --surface-soft:   #f9fafb;
+    --surface-lilac:  #f5f3ff;
+    --surface-hover:  #f3f4f6;
+    --border:         #e5e7eb;
+    --border-soft:    #f3f4f6;
+    --border-purple:  #ddd6fe;
+
+    /* ============================================
+       ГРАДИЕНТЫ
+       ============================================ */
+    --gradient-purple: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+    --gradient-purple-soft: linear-gradient(135deg, #ede9fe 0%, #d6bcfa 100%);
+    --gradient-hero: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+
+    /* ============================================
+       РАДИУСЫ (мягкие)
+       ============================================ */
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 20px;
-    --radius-pill: 60px;
+    --radius-xl: 28px;
+    --radius-pill: 100px;
 
-    /* Отступы */
+    /* ============================================
+       ОТСТУПЫ
+       ============================================ */
     --space-xs: 6px;
     --space-sm: 12px;
     --space-md: 20px;
     --space-lg: 32px;
     --space-xl: 48px;
+    --space-2xl: 64px;
 
-    /* Шрифты */
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* ============================================
+       ШРИФТЫ
+       ============================================ */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-serif: Georgia, 'Times New Roman', serif;
     --font-mono: 'SF Mono', Consolas, Monaco, monospace;
 
-    /* Размеры текста */
     --text-sm: 0.875rem;
     --text-base: 1rem;
     --text-lg: 1.125rem;
     --text-xl: 1.5rem;
     --text-2xl: 2rem;
-    --text-3xl: 3rem;
+    --text-3xl: 2.75rem;
 
-    /* Тени */
-    --shadow-glow: 0 0 40px rgba(79, 172, 254, 0.35);
+    /* ============================================
+       ТЕНИ (мягкие)
+       ============================================ */
+    --shadow-sm:    0 1px 3px rgba(31, 27, 58, 0.06);
+    --shadow-md:    0 4px 16px rgba(31, 27, 58, 0.08);
+    --shadow-lg:    0 12px 32px rgba(31, 27, 58, 0.1);
+    --shadow-xl:    0 24px 48px rgba(124, 58, 237, 0.15);
+    --shadow-purple: 0 8px 24px rgba(124, 58, 237, 0.25);
 }
