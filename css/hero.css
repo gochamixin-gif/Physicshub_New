@@ -1,5 +1,5 @@
 /* ============================================================
-   ШАПКА САЙТА — светлая, чистая
+   ШАПКА — тёмная, стеклянная
    ============================================================ */
 
 .site-header {
@@ -10,13 +10,12 @@
     align-items: center;
     gap: 20px;
     padding: 14px 40px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(10, 6, 24, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
 }
 
-/* Логотип */
 .site-logo {
     display: flex;
     align-items: center;
@@ -26,7 +25,7 @@
     transition: opacity 0.2s;
 }
 
-.site-logo:hover { opacity: 0.75; }
+.site-logo:hover { opacity: 0.8; }
 
 .site-logo__mark {
     display: inline-flex;
@@ -35,17 +34,27 @@
     width: 38px;
     height: 38px;
     border-radius: 12px;
-    background: var(--gradient-purple);
-    color: #fff;
+    background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(167,139,250,0.2));
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    color: var(--accent);
     font-size: 1.2rem;
-    box-shadow: var(--shadow-purple);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+    animation: floatSoft 4s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
 }
 
 .site-logo__text {
     font-weight: 800;
     font-size: 1.2rem;
     letter-spacing: -0.4px;
-    color: var(--text-strong);
+    background: linear-gradient(90deg, #c4b5fd, #a78bfa, #7c3aed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 /* Вкладки */
@@ -53,7 +62,8 @@
     display: flex;
     gap: 4px;
     padding: 4px;
-    background: var(--surface-lilac);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
     border-radius: 12px;
     flex-shrink: 0;
 }
@@ -77,20 +87,19 @@
 
 .site-tab:hover {
     color: var(--accent);
-    background: rgba(124, 58, 237, 0.08);
+    background: rgba(167, 139, 250, 0.1);
 }
 
 .site-tab--active {
-    background: #fff;
-    color: var(--accent);
+    background: rgba(124, 58, 237, 0.25);
+    color: #fff;
     font-weight: 600;
-    box-shadow: var(--shadow-sm);
+    box-shadow:
+            inset 0 0 0 1px rgba(167, 139, 250, 0.4),
+            0 0 20px rgba(124, 58, 237, 0.2);
 }
 
-.site-tab__icon {
-    font-size: 1rem;
-    line-height: 1;
-}
+.site-tab__icon { font-size: 1rem; line-height: 1; }
 
 /* Поиск */
 .site-search {
@@ -116,8 +125,8 @@
     padding: 11px 16px 11px 44px;
     font-size: 0.95rem;
     font-family: inherit;
-    background: var(--surface-soft);
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
     border-radius: 12px;
     color: var(--text);
     outline: none;
@@ -128,8 +137,8 @@
 
 .site-search__input:focus {
     border-color: var(--accent);
-    background: #fff;
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
 }
 
 .site-search:focus-within .site-search__icon { color: var(--accent); }
@@ -140,8 +149,8 @@
     align-items: center;
     gap: 8px;
     padding: 11px 20px;
-    background: var(--gradient-purple);
-    border: none;
+    background: linear-gradient(135deg, rgba(124,58,237,0.9), rgba(167,139,250,0.9));
+    border: 1px solid rgba(167, 139, 250, 0.4);
     border-radius: 12px;
     color: #fff;
     font-size: 0.9rem;
@@ -151,32 +160,127 @@
     white-space: nowrap;
     transition: all 0.2s ease;
     flex-shrink: 0;
-    box-shadow: var(--shadow-purple);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
 }
 
 .site-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(124, 58, 237, 0.35);
+    box-shadow: 0 8px 28px rgba(124, 58, 237, 0.5);
 }
 
-.site-btn:active {
-    transform: translateY(0);
-}
-
+.site-btn:active { transform: translateY(0); }
 .site-btn__icon { font-size: 1rem; }
 
 /* ============================================================
-   ГЛАВНАЯ — светлая, с фиолетовыми акцентами
+   ГЛАВНАЯ — тёмная, с атомом
    ============================================================ */
 
 .hero {
     position: relative;
     z-index: 1;
-    background: var(--gradient-hero);
     min-height: calc(100vh - 70px);
+    overflow: hidden;
 }
 
+/* ============================================================
+   АТОМ НА ФОНЕ
+   ============================================================ */
+
+.hero-atom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 900px;
+    max-width: 120vw;
+    max-height: 120vh;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    animation: atomEnter 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-atom svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(0 0 40px rgba(124, 58, 237, 0.4));
+}
+
+@keyframes atomEnter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7) rotate(-45deg);
+    }
+    to {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+}
+
+.hero-atom__orbit {
+    transform-origin: 300px 300px;
+    will-change: transform;
+}
+
+.hero-atom__orbit--1 { animation: orbitRotate1 25s linear infinite; }
+.hero-atom__orbit--2 { animation: orbitRotate2 35s linear infinite; }
+.hero-atom__orbit--3 { animation: orbitRotate3 30s linear infinite reverse; }
+
+@keyframes orbitRotate1 {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes orbitRotate2 {
+    from { transform: rotate(60deg); }
+    to   { transform: rotate(420deg); }
+}
+
+@keyframes orbitRotate3 {
+    from { transform: rotate(-60deg); }
+    to   { transform: rotate(-420deg); }
+}
+
+.hero-atom__electron {
+    animation: electronPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px currentColor);
+}
+
+.hero-atom__electron--1 { animation-delay: 0s; }
+.hero-atom__electron--2 { animation-delay: 0.7s; }
+.hero-atom__electron--3 { animation-delay: 1.4s; }
+
+@keyframes electronPulse {
+    0%, 100% { opacity: 0.6; }
+    50%      { opacity: 1; }
+}
+
+.hero-atom__core {
+    transform-origin: 300px 300px;
+    animation: corePulse 3s ease-in-out infinite;
+}
+
+@keyframes corePulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50%      { transform: scale(1.15); opacity: 1; }
+}
+
+.hero-atom__core-pulse {
+    transform-origin: 300px 300px;
+    animation: coreRing 3s ease-out infinite;
+}
+
+@keyframes coreRing {
+    0%   { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(3); opacity: 0; }
+}
+
+/* Контент поверх атома */
 .page {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
     padding: 60px 40px 100px;
@@ -187,6 +291,7 @@
 .intro {
     text-align: center;
     margin-bottom: 64px;
+    position: relative;
 }
 
 .intro__label {
@@ -198,8 +303,10 @@
     text-transform: uppercase;
     margin-bottom: 20px;
     padding: 8px 18px;
-    background: var(--purple-100);
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.3);
     border-radius: 100px;
+    backdrop-filter: blur(10px);
 }
 
 .intro__title {
@@ -212,6 +319,7 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    text-shadow: 0 0 40px rgba(167, 139, 250, 0.3);
 }
 
 .intro__desc {
@@ -228,22 +336,45 @@
     align-items: center;
     gap: 14px;
     padding: 18px 28px;
-    background: #fff;
-    border: 1px solid var(--border-purple);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(167, 139, 250, 0.3);
     border-radius: 20px;
     color: var(--text);
     font-family: inherit;
     text-align: left;
     cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
     margin-top: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            120deg,
+            transparent 30%,
+            rgba(167, 139, 250, 0.15) 50%,
+            transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
 
 .intro-cta:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
     border-color: var(--accent);
+    box-shadow: 0 0 60px rgba(124, 58, 237, 0.4);
 }
 
 .intro-cta__icon {
@@ -253,10 +384,10 @@
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: var(--gradient-purple);
+    background: linear-gradient(135deg, rgba(124,58,237,0.6), rgba(167,139,250,0.4));
+    border: 1px solid rgba(167, 139, 250, 0.5);
     font-size: 1.4rem;
     flex-shrink: 0;
-    color: #fff;
 }
 
 .intro-cta__text {
@@ -321,14 +452,14 @@
     display: flex;
     flex-direction: column;
     padding: 28px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
     border-radius: 24px;
     text-decoration: none;
     color: var(--text);
-    transition: all 0.25s ease;
-    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
     overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
 .section-card::before {
@@ -337,16 +468,17 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: var(--gradient-purple);
     opacity: 0;
-    transition: opacity 0.25s;
+    transition: opacity 0.3s;
 }
 
 .section-card:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--border-purple);
+    border-color: rgba(167, 139, 250, 0.4);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+    background: rgba(124, 58, 237, 0.08);
 }
 
 .section-card:hover::before { opacity: 1; }
@@ -373,9 +505,17 @@
     width: 52px;
     height: 52px;
     border-radius: 16px;
-    background: var(--gradient-purple);
+    background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(167,139,250,0.25));
+    border: 1px solid rgba(167, 139, 250, 0.3);
     font-size: 1.5rem;
-    box-shadow: var(--shadow-purple);
+    box-shadow: 0 0 24px rgba(124, 58, 237, 0.25);
+    transition: all 0.3s ease;
+}
+
+.section-card:hover .section-card__icon {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px rgba(167, 139, 250, 0.5);
+    animation: pulse 0.6s ease;
 }
 
 .section-card__title {
@@ -423,6 +563,12 @@
 .section-card:hover .section-card__arrow {
     color: var(--accent);
     transform: translateX(6px);
+    animation: slideArrow 0.8s ease-in-out infinite;
+}
+
+@keyframes slideArrow {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(6px); }
 }
 
 /* Адаптив */
@@ -430,6 +576,8 @@
     .site-header { padding: 12px 20px; gap: 12px; }
     .site-btn__text { display: none; }
     .site-btn { padding: 10px 14px; }
+
+    .hero-atom { width: 700px; height: 700px; opacity: 0.4; }
 }
 
 @media (max-width: 700px) {
@@ -455,279 +603,21 @@
     .section-card { padding: 22px; }
     .section-card__icon { width: 44px; height: 44px; font-size: 1.3rem; }
     .section-card__title { font-size: 1.1rem; }
-}
-/* ============================================================
-   УЛУЧШЕННЫЕ АНИМАЦИИ В СТИЛЕ СФЕРУМА
-   ============================================================ */
 
-/* Логотип — мягкое покачивание */
-.site-logo__mark {
-    animation: floatSoft 4s ease-in-out infinite;
-}
-
-/* CTA-кнопка — пульсирующее свечение */
-.intro-cta {
-    position: relative;
-    overflow: hidden;
-}
-
-.intro-cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-            120deg,
-            transparent 30%,
-            rgba(124, 58, 237, 0.08) 50%,
-            transparent 70%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 3s linear infinite;
-    pointer-events: none;
-}
-
-/* Карточки разделов — плавный ховер */
-.section-card {
-    will-change: transform, box-shadow;
-}
-
-.section-card:hover .section-card__icon {
-    animation: pulse 0.6s ease;
-}
-
-/* Сферы на фоне — «дыхание» */
-.hero::before {
-    animation: float 22s ease-in-out infinite;
-}
-
-.hero::after {
-    animation: float 28s ease-in-out infinite reverse;
-}
-
-/* Вкладки в шапке — мягкий переход при наведении */
-.site-tab {
-    position: relative;
-    overflow: hidden;
-}
-
-.site-tab::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-            circle at center,
-            rgba(124, 58, 237, 0.1),
-            transparent 70%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.site-tab:hover::before {
-    opacity: 1;
-}
-
-/* Кнопка «Случайная» — пульсация */
-.site-btn--random {
-    position: relative;
-}
-
-.site-btn--random::after {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: inherit;
-    background: linear-gradient(135deg, #7c3aed, #a78bfa);
-    opacity: 0;
-    z-index: -1;
-    filter: blur(10px);
-    transition: opacity 0.3s ease;
-}
-
-.site-btn--random:hover::after {
-    opacity: 0.6;
-}
-
-/* Стрелка в карточках — «выбегает» при ховере */
-.section-card:hover .section-card__arrow {
-    animation: slideArrow 0.8s ease-in-out infinite;
-}
-
-@keyframes slideArrow {
-    0%, 100% { transform: translateX(0); }
-    50%      { transform: translateX(8px); }
-}
-/* ============================================================
-   АТОМ НА ФОНЕ ГЛАВНОГО ЭКРАНА
-   ============================================================ */
-
-.hero {
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-atom {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 900px;
-    height: 900px;
-    max-width: 120vw;
-    max-height: 120vh;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.6;
-    animation: atomEnter 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.hero-atom svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-@keyframes atomEnter {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.7) rotate(-45deg);
-    }
-    to {
-        opacity: 0.6;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    }
-}
-
-/* --- Вращение орбит --- */
-
-.hero-atom__orbit {
-    transform-origin: 300px 300px;
-    will-change: transform;
-}
-
-.hero-atom__orbit--1 {
-    animation: orbitRotate1 25s linear infinite;
-}
-
-.hero-atom__orbit--2 {
-    animation: orbitRotate2 35s linear infinite;
-}
-
-.hero-atom__orbit--3 {
-    animation: orbitRotate3 30s linear infinite reverse;
-}
-
-@keyframes orbitRotate1 {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-
-@keyframes orbitRotate2 {
-    from { transform: rotate(60deg); }
-    to   { transform: rotate(420deg); }
-}
-
-@keyframes orbitRotate3 {
-    from { transform: rotate(-60deg); }
-    to   { transform: rotate(-420deg); }
-}
-
-/* --- Электроны (пульсируют) --- */
-
-.hero-atom__electron {
-    animation: electronPulse 2s ease-in-out infinite;
-}
-
-.hero-atom__electron--1 { animation-delay: 0s; }
-.hero-atom__electron--2 { animation-delay: 0.7s; }
-.hero-atom__electron--3 { animation-delay: 1.4s; }
-
-@keyframes electronPulse {
-    0%, 100% {
-        opacity: 0.6;
-        r: 8;
-    }
-    50% {
-        opacity: 1;
-        r: 11;
-    }
-}
-
-/* --- Ядро --- */
-
-.hero-atom__core {
-    transform-origin: 300px 300px;
-    animation: corePulse 3s ease-in-out infinite;
-}
-
-@keyframes corePulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 0.9;
-    }
-    50% {
-        transform: scale(1.15);
-        opacity: 1;
-    }
-}
-
-.hero-atom__core-pulse {
-    transform-origin: 300px 300px;
-    animation: coreRing 3s ease-out infinite;
-}
-
-@keyframes coreRing {
-    0% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-    100% {
-        transform: scale(3);
-        opacity: 0;
-    }
-}
-
-/* --- Контент поверх атома --- */
-
-.page {
-    position: relative;
-    z-index: 1;
-}
-
-/* --- Мобильная версия: атом меньше --- */
-
-@media (max-width: 900px) {
-    .hero-atom {
-        width: 700px;
-        height: 700px;
-        opacity: 0.45;
-    }
-}
-
-@media (max-width: 700px) {
-    .hero-atom {
-        width: 500px;
-        height: 500px;
-        opacity: 0.35;
-    }
+    .hero-atom { width: 500px; height: 500px; opacity: 0.3; }
 }
 
 @media (max-width: 480px) {
-    .hero-atom {
-        width: 380px;
-        height: 380px;
-        opacity: 0.3;
-    }
+    .hero-atom { width: 380px; height: 380px; opacity: 0.25; }
 }
 
-/* --- Уменьшенная анимация для тех, кто не любит --- */
-
+/* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .hero-atom__orbit,
     .hero-atom__electron,
     .hero-atom__core,
-    .hero-atom__core-pulse {
+    .hero-atom__core-pulse,
+    .site-logo__mark {
         animation: none;
     }
 }

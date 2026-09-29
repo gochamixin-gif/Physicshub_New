@@ -1,70 +1,72 @@
 :root {
     /* ============================================
-       ФОН
+       ФОН — тёмный
        ============================================ */
-    --bg-main: #ffffff;
-    --bg-soft: #f7f5ff;
-    --bg-lavender: #ede9fe;
-    --bg-purple-soft: #f3efff;
+    --bg-main: #0a0618;
+    --bg-deep: #060311;
+    --bg-soft: #12102a;
+    --bg-lavender: #1a1535;
+    --bg-purple-soft: #16123a;
 
     /* ============================================
-       ФИОЛЕТОВАЯ ПАЛИТРА (акценты)
+       ФИОЛЕТОВАЯ ПАЛИТРА
        ============================================ */
-    --purple-900: #3b1e8a;
-    --purple-700: #5b21b6;
-    --purple-600: #6d28d9;
-    --purple-500: #7c3aed;
-    --purple-400: #9f7aea;
-    --purple-300: #b794f4;
-    --purple-200: #d6bcfa;
-    --purple-100: #ede9fe;
-    --purple-50:  #f5f3ff;
+    --purple-900: #ede9fe;
+    --purple-700: #c4b5fd;
+    --purple-600: #a78bfa;
+    --purple-500: #8b5cf6;
+    --purple-400: #7c3aed;
+    --purple-300: #6d28d9;
+    --purple-200: #5b21b6;
+    --purple-100: #3b1e8a;
+    --purple-50:  #1f1049;
 
     /* ============================================
        ОСНОВНЫЕ АКЦЕНТЫ
        ============================================ */
-    --accent:      #7c3aed;   /* основной фиолетовый */
-    --accent-2:    #a78bfa;   /* светлее */
-    --accent-3:    #6d28d9;   /* темнее */
-    --accent-soft: #ede9fe;   /* очень светлый */
+    --accent:      #a78bfa;   /* светлый фиолетовый — ярче на тёмном */
+    --accent-2:    #c4b5fd;   /* ещё светлее */
+    --accent-3:    #8b5cf6;   /* средний */
+    --accent-soft: #3b1e8a;   /* тёмный фиолетовый для фонов */
 
     /* ============================================
        СЕМАНТИКА
        ============================================ */
-    --color-info:    #7c3aed;
-    --color-success: #10b981;
-    --color-warn:    #f59e0b;
-    --color-danger:  #ef4444;
+    --color-info:    #a78bfa;
+    --color-success: #4ade80;
+    --color-warn:    #fbbf24;
+    --color-danger:  #f87171;
 
     /* ============================================
        ТЕКСТ
        ============================================ */
-    --text:        #1f1b3a;
-    --text-strong: #0f0c29;
-    --text-dim:    #6b7280;
-    --text-mute:   #9ca3af;
-    --text-invert: #ffffff;
+    --text:        #e8e6f5;
+    --text-strong: #ffffff;
+    --text-dim:    #a5a0b8;
+    --text-mute:   #6b6780;
+    --text-invert: #0a0618;
 
     /* ============================================
        ПОВЕРХНОСТИ
        ============================================ */
-    --surface:        #ffffff;
-    --surface-soft:   #f9fafb;
-    --surface-lilac:  #f5f3ff;
-    --surface-hover:  #f3f4f6;
-    --border:         #e5e7eb;
-    --border-soft:    #f3f4f6;
-    --border-purple:  #ddd6fe;
+    --surface:        rgba(255, 255, 255, 0.05);
+    --surface-soft:   rgba(255, 255, 255, 0.03);
+    --surface-lilac:  rgba(167, 139, 250, 0.08);
+    --surface-hover:  rgba(255, 255, 255, 0.08);
+    --border:         rgba(255, 255, 255, 0.1);
+    --border-soft:    rgba(255, 255, 255, 0.05);
+    --border-purple:  rgba(167, 139, 250, 0.35);
 
     /* ============================================
        ГРАДИЕНТЫ
        ============================================ */
     --gradient-purple: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-    --gradient-purple-soft: linear-gradient(135deg, #ede9fe 0%, #d6bcfa 100%);
-    --gradient-hero: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+    --gradient-purple-soft: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
+    --gradient-hero: linear-gradient(180deg, #0a0618 0%, #12102a 50%, #0a0618 100%);
+    --gradient-page: radial-gradient(ellipse at top, #1f1049 0%, #0a0618 50%, #060311 100%);
 
     /* ============================================
-       РАДИУСЫ (мягкие)
+       РАДИУСЫ
        ============================================ */
     --radius-sm: 8px;
     --radius-md: 14px;
@@ -97,11 +99,12 @@
     --text-3xl: 2.75rem;
 
     /* ============================================
-       ТЕНИ (мягкие)
+       ТЕНИ — свечение на тёмном
        ============================================ */
-    --shadow-sm:    0 1px 3px rgba(31, 27, 58, 0.06);
-    --shadow-md:    0 4px 16px rgba(31, 27, 58, 0.08);
-    --shadow-lg:    0 12px 32px rgba(31, 27, 58, 0.1);
-    --shadow-xl:    0 24px 48px rgba(124, 58, 237, 0.15);
-    --shadow-purple: 0 8px 24px rgba(124, 58, 237, 0.25);
+    --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md:    0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-lg:    0 12px 40px rgba(0, 0, 0, 0.5);
+    --shadow-xl:    0 24px 60px rgba(124, 58, 237, 0.25);
+    --shadow-purple: 0 8px 32px rgba(124, 58, 237, 0.4);
+    --glow-purple:  0 0 40px rgba(167, 139, 250, 0.4);
 }
