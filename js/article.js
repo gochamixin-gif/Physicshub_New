@@ -97,6 +97,82 @@ function note({ kind = 'info', title, text, items }) {
   `;
 }
 
+/**
+ * Таблица.
+ * { type: 'table', caption, headers: [...], rows: [[...], ...] }
+ * Первая ячейка каждой строки — заголовок строки (<th scope="row">),
+ * если у таблицы есть строка заголовков.
+ */
+function table({ caption, headers = [], rows = [] }) {
+    const hasHead = headers.length > 0;
+
+    const thead = hasHead
+        ? `<thead><tr>${headers.map(h => `<th scope="col">${h}</th>`).join('')}</tr></thead>`
+        : '';
+
+    const tbody = rows.map(row => {
+        const cells = row.map((cell, i) =>
+            hasHead && i === 0
+                ? `<th scope="row">${cell}</th>`
+                : `<td>${cell}</td>`
+        ).join('');
+        return `<tr>${cells}</tr>`;
+    }).join('');
+
+    return `
+    <div class="data-table-wrap">
+      <table class="data-table">
+        ${caption ? `<caption>${caption}</caption>` : ''}
+        ${thead}
+        <tbody>${tbody}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+/**
+ * Разобранный пример задачи.
+ * { type: 'example', title?, task, given, solution, answer }
+ * Любое поле можно опустить — пустые строки не выводятся.
+ */
+function example({ title = 'Пример', task, given, solution, answer }) {
+    const row = (mod, label, value) => value
+        ? `
+      <div class="example__row example__row--${mod}">
+        <div class="example__label">${label}</div>
+        <div class="example__value">${value}</div>
+      </div>`
+        : '';
+
+    return `
+    <div class="example">
+      <div class="example__head">
+        <span class="example__icon">📝</span>
+        <span>${title}</span>
+      </div>
+      ${row('task',     'Задача',  task)}
+      ${row('given',    'Дано',    given)}
+      ${row('solution', 'Решение', solution)}
+      ${row('answer',   'Ответ',   answer)}
+    </div>
+  `;
+}
+
+/**
+ * Хронология.
+ * { type: 'timeline', events: [{ year, text }, ...] }
+ */
+function timeline({ events = [] }) {
+    const items = events.map(e => `
+      <li class="timeline__item">
+        <span class="timeline__year">${e.year}</span>
+        <span class="timeline__text">${e.text}</span>
+      </li>
+    `).join('');
+
+    return `<ol class="timeline">${items}</ol>`;
+}
+
 // ---------- Реестр блоков ----------
 
 const blocks = {
@@ -106,7 +182,10 @@ const blocks = {
     quote,
     formula,
     diagram,
-    note
+    note,
+    table,
+    example,
+    timeline
 };
 
 // ---------- Публичное API ----------
@@ -118,11 +197,18 @@ export function buildArticle(article) {
         .join('\n');
 }
 
+const IS_LOCAL = typeof location !== 'undefined'
+    && ['localhost', '127.0.0.1', ''].includes(location.hostname);
+
 function renderBlock(block, article) {
     const fn = blocks[block.type];
     if (!fn) {
         console.warn(`[article] Неизвестный блок: ${block.type}`);
-        return '';
+        // На локальной машине показываем заметную плашку,
+        // чтобы пропущенный блок нельзя было не заметить.
+        return IS_LOCAL
+            ? `<div class="block-unknown">Неизвестный блок: <code>${block.type}</code></div>`
+            : '';
     }
     return fn(block, article);
 }
