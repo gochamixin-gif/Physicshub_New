@@ -6,6 +6,7 @@ export const workTasks = [
     {
         id: 'work-1',
         category: 'Работа и энергия',
+        grade: 7,
         topic: 'Механическая работа',
         level: 1,
         task: 'Ящик тянут силой 100 Н на расстояние 5 м. Найти работу.',

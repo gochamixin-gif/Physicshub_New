@@ -4,12 +4,13 @@
 
 import { renderHero, renderHeader } from './ui/hero.js';
 import { initEvents } from './ui/events.js';
-import {
-    initScrollAnimations,
-    attachRipplesToButtons
-} from './core/animations.js';
+import { initScrollAnimations, attachRipplesToButtons } from './core/animations.js';
+import { loadGrade } from './core/grade-filter.js';
 
 function bootstrap() {
+    // Загружаем сохранённый класс
+    loadGrade();
+
     renderHeader();
     renderHero();
     initEvents();

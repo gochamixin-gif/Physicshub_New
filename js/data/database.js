@@ -1,5 +1,5 @@
 // ============================================================
-// РЕЕСТР СТАТЕЙ — 120 статей
+// РЕЕСТР СТАТЕЙ — 180 статей
 // ============================================================
 
 // ------------------------------------------------------------
@@ -11,8 +11,6 @@ import { scientificMethods }         from './topics/scientific-methods.js';
 import { physicalQuantities }        from './topics/physical-quantities.js';
 import { measurementAccuracy }       from './topics/measurement-accuracy.js';
 import { physicsInTechnology }       from './topics/physics-in-technology.js';
-
-// Новые — Введение
 import { lengthMeasurement }         from './topics/length-measurement.js';
 import { timeMeasurement }           from './topics/time-measurement.js';
 import { smallBodyDiameter }         from './topics/small-body-diameter.js';
@@ -41,8 +39,6 @@ import { diffusion }                 from './topics/diffusion.js';
 import { molecularForces }           from './topics/molecular-forces.js';
 import { aggregateStates }           from './topics/aggregate-states.js';
 import { molecularDifferences }      from './topics/molecular-differences.js';
-
-// Новые — Строение вещества
 import { moonFootprints }            from './topics/moon-footprints.js';
 import { whyIceSlippery }            from './topics/why-ice-slippery.js';
 
@@ -70,8 +66,6 @@ import { forceAddition }             from './topics/force-addition.js';
 import { friction }                  from './topics/friction.js';
 import { staticFriction }            from './topics/static-friction.js';
 import { frictionNature }            from './topics/friction-nature.js';
-
-// Новые — Взаимодействие тел
 import { averageSpeedTasks }         from './topics/average-speed-tasks.js';
 import { centerOfGravity }           from './topics/center-of-gravity.js';
 import { cavendish }                 from './topics/cavendish.js';
@@ -101,8 +95,6 @@ import { fluidAction }               from './topics/fluid-action.js';
 import { archimedesForce }           from './topics/archimedes-force.js';
 import { floatingBodies }            from './topics/floating-bodies.js';
 import { shipsAeronautics }          from './topics/ships-aeronautics.js';
-
-// Новые — Давление
 import { aerostaticsHistory }        from './topics/aerostatics-history.js';
 import { aircraftThrust }            from './topics/aircraft-thrust.js';
 import { archimedes }                from './topics/archimedes.js';
@@ -131,8 +123,6 @@ import { goldenRule }                from './topics/golden-rule.js';
 import { efficiency }                from './topics/efficiency.js';
 import { mechanicalEnergy }          from './topics/mechanical-energy.js';
 import { energyConversion }          from './topics/energy-conversion.js';
-
-// Новые — Работа и энергия
 import { bicyclePhysics }            from './topics/bicycle-physics.js';
 import { cranePhysics }              from './topics/crane-physics.js';
 import { equilibriumConditions }     from './topics/equilibrium-conditions.js';
@@ -146,13 +136,84 @@ import { simpleMechanismsHome }      from './topics/simple-mechanisms-home.js';
 // ------------------------------------------------------------
 import { gravity }                   from './topics/gravity.js';
 
+// ------------------------------------------------------------
+// 8 КЛАСС — ТЕПЛОВЫЕ ЯВЛЕНИЯ
+// ------------------------------------------------------------
+import { molecularTheory }           from './topics-8/molecular-theory.js';
+import { temperature }               from './topics-8/temperature.js';
+import { internalEnergy }            from './topics-8/internal-energy.js';
+import { changeInternalEnergy }      from './topics-8/change-internal-energy.js';
+import { heatConduction }            from './topics-8/heat-conduction.js';
+import { convection }                from './topics-8/convection.js';
+import { radiation }                 from './topics-8/radiation.js';
+import { heatQuantity }              from './topics-8/heat-quantity.js';
+import { specificHeat }              from './topics-8/specific-heat.js';
+import { heatCalculation }           from './topics-8/heat-calculation.js';
+import { fuelEnergy }                from './topics-8/fuel-energy.js';
+import { energyConservationThermal } from './topics-8/energy-conservation-thermal.js';
+import { melting }                   from './topics-8/melting.js';
+import { meltingGraph }              from './topics-8/melting-graph.js';
+import { specificMeltingHeat }       from './topics-8/specific-melting-heat.js';
+import { evaporation }               from './topics-8/evaporation.js';
+import { evaporationEnergy }         from './topics-8/evaporation-energy.js';
+import { humidity }                  from './topics-8/humidity.js';
+import { boiling }                   from './topics-8/boiling.js';
+import { specificVaporizationHeat }  from './topics-8/specific-vaporization-heat.js';
+import { gasWork }                   from './topics-8/gas-work.js';
+import { combustionEngine }          from './topics-8/combustion-engine.js';
+import { steamTurbine }              from './topics-8/steam-turbine.js';
+import { heatEngineEfficiency }      from './topics-8/heat-engine-efficiency.js';
+
+// ------------------------------------------------------------
+// 8 КЛАСС — ЭЛЕКТРИЧЕСКИЕ ЯВЛЕНИЯ
+// ------------------------------------------------------------
+import { electrification }           from './topics-8/electrification.js';
+import { electroscope }              from './topics-8/electroscope.js';
+import { coulombLaw }                from './topics-8/coulomb-law.js';
+import { electricCharge }            from './topics-8/electric-charge.js';
+import { atomStructure }             from './topics-8/atom-structure.js';
+import { chargeConservation }        from './topics-8/charge-conservation.js';
+import { staticElectricity }         from './topics-8/static-electricity.js';
+import { electricCurrent }           from './topics-8/electric-current.js';
+import { electricCircuit }           from './topics-8/electric-circuit.js';
+import { currentInMetals }           from './topics-8/current-in-metals.js';
+import { currentActions }            from './topics-8/current-actions.js';
+import { currentStrength }           from './topics-8/current-strength.js';
+import { voltage }                   from './topics-8/voltage.js';
+import { ohmsLaw }                   from './topics-8/ohms-law.js';
+import { resistivity }               from './topics-8/resistivity.js';
+import { resistanceTasks }           from './topics-8/resistance-tasks.js';
+import { rheostats }                 from './topics-8/rheostats.js';
+import { seriesConnection }          from './topics-8/series-connection.js';
+import { parallelConnection }        from './topics-8/parallel-connection.js';
+import { electricWorkPower }         from './topics-8/electric-work-power.js';
+import { jouleLenzLaw }              from './topics-8/joule-lenz-law.js';
+import { lampsHeaters }              from './topics-8/lamps-heaters.js';
+import { shortCircuit }              from './topics-8/short-circuit.js';
+
+// ------------------------------------------------------------
+// 8 КЛАСС — ЭЛЕКТРОМАГНИТНЫЕ ЯВЛЕНИЯ
+// ------------------------------------------------------------
+import { permanentMagnets }          from './topics-8/permanent-magnets.js';
+import { magneticField }             from './topics-8/magnetic-field.js';
+import { magneticLines }             from './topics-8/magnetic-lines.js';
+import { electromagnets }            from './topics-8/electromagnets.js';
+import { earthMagneticField }        from './topics-8/earth-magnetic-field.js';
+import { magneticForce }             from './topics-8/magnetic-force.js';
+import { magneticInduction }         from './topics-8/magnetic-induction.js';
+import { electricMotor }             from './topics-8/electric-motor.js';
+import { magneticFlux }              from './topics-8/magnetic-flux.js';
+import { electromagneticInduction }  from './topics-8/electromagnetic-induction.js';
+import { lenzRule }                  from './topics-8/lenz-rule.js';
+import { energyProduction }          from './topics-8/electric-energy-production.js';
+import { energyTransfer }            from './topics-8/electric-energy-transfer.js';
+
+
 // ============================================================
 // МАССИВ СТАТЕЙ
 // ============================================================
 export const database = [
-    // ------------------------------------------------------------
-    // Введение в физику
-    // ------------------------------------------------------------
+    // --- Введение в физику ---
     siSystem,
     physicalTerms,
     scientificMethods,
@@ -177,9 +238,7 @@ export const database = [
     rainbowPhysics,
     vacuum,
 
-    // ------------------------------------------------------------
-    // Строение вещества
-    // ------------------------------------------------------------
+    // --- Строение вещества ---
     matterStructure,
     molecules,
     brownianMotion,
@@ -190,9 +249,7 @@ export const database = [
     moonFootprints,
     whyIceSlippery,
 
-    // ------------------------------------------------------------
-    // Взаимодействие тел
-    // ------------------------------------------------------------
+    // --- Взаимодействие тел ---
     mechanicalMotion,
     uniformMotion,
     speed,
@@ -225,9 +282,7 @@ export const database = [
     physicsInBicycle,
     physicsInCar,
 
-    // ------------------------------------------------------------
-    // Давление
-    // ------------------------------------------------------------
+    // --- Давление ---
     pressure,
     gasPressure,
     pascalLaw,
@@ -257,9 +312,7 @@ export const database = [
     waterSupply,
     whyPlaneFlies,
 
-    // ------------------------------------------------------------
-    // Работа и энергия
-    // ------------------------------------------------------------
+    // --- Работа и энергия ---
     mechanicalWork,
     power,
     simpleMechanisms,
@@ -279,11 +332,90 @@ export const database = [
     simpleMechanismsBody,
     simpleMechanismsHome,
 
-    // ------------------------------------------------------------
-    // Механика (базовая)
-    // ------------------------------------------------------------
-    gravity
+    // --- Механика (базовая) ---
+    gravity,
+
+    // --- 8 класс. Тепловые явления ---
+    molecularTheory,
+    temperature,
+    internalEnergy,
+    changeInternalEnergy,
+    heatConduction,
+    convection,
+    radiation,
+    heatQuantity,
+    specificHeat,
+    heatCalculation,
+    fuelEnergy,
+    energyConservationThermal,
+    melting,
+    meltingGraph,
+    specificMeltingHeat,
+    evaporation,
+    evaporationEnergy,
+    humidity,
+    boiling,
+    specificVaporizationHeat,
+    gasWork,
+    combustionEngine,
+    steamTurbine,
+    heatEngineEfficiency,
+
+    // --- 8 класс. Электрические явления ---
+    electrification,
+    electroscope,
+    coulombLaw,
+    electricCharge,
+    atomStructure,
+    chargeConservation,
+    staticElectricity,
+    electricCurrent,
+    electricCircuit,
+    currentInMetals,
+    currentActions,
+    currentStrength,
+    voltage,
+    ohmsLaw,
+    resistivity,
+    resistanceTasks,
+    rheostats,
+    seriesConnection,
+    parallelConnection,
+    electricWorkPower,
+    jouleLenzLaw,
+    lampsHeaters,
+    shortCircuit,
+
+    // --- 8 класс. Электромагнитные явления ---
+    permanentMagnets,
+    magneticField,
+    magneticLines,
+    electromagnets,
+    earthMagneticField,
+    magneticForce,
+    magneticInduction,
+    electricMotor,
+    magneticFlux,
+    electromagneticInduction,
+    lenzRule,
+    energyProduction,
+    energyTransfer
 ];
+
+// ============================================================
+// СОРТИРОВКА ПО ХРОНОЛОГИИ (класс → порядок)
+// ============================================================
+database.sort((a, b) => {
+    const gradeA = a.grade || 7;
+    const gradeB = b.grade || 7;
+
+    if (gradeA !== gradeB) return gradeA - gradeB;
+
+    const orderA = a.order || 999;
+    const orderB = b.order || 999;
+
+    return orderA - orderB;
+});
 
 // ============================================================
 // ХЕЛПЕР

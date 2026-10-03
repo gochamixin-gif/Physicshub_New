@@ -6,6 +6,7 @@ export const pressureTasks = [
     {
         id: 'pressure-1',
         category: 'Давление',
+        grade: 7,
         topic: 'Давление',
         level: 1,
         task: 'Найти давление тела весом 600 Н на опору площадью 0,2 м².',

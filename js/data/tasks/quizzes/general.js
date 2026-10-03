@@ -10,6 +10,7 @@ export const generalQuizzes = [
         id: 'quiz-si',
         title: 'Система единиц СИ',
         category: 'Введение в физику',
+        grade: 7,
         topic: 'СИ',
         level: 1,
         description: '5 вопросов о единицах СИ и переводах',

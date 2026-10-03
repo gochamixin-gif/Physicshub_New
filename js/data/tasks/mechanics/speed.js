@@ -6,6 +6,7 @@ export const speedTasks = [
     {
         id: 'speed-1',
         category: 'Механика',
+        grade: 7,
         topic: 'Скорость',
         level: 1,
         task: 'Автомобиль проехал 90 км за 1,5 часа. Найти среднюю скорость.',

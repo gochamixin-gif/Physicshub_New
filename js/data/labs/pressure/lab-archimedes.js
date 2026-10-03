@@ -6,6 +6,7 @@ export const labArchimedes = {
     id: 'lab-archimedes',
     title: 'Определение выталкивающей силы, действующей на погружённое в жидкость тело',
     category: 'Давление',
+        grade: 7,
     topic: 'Архимедова сила',
     duration: '35 мин',
     level: 2,

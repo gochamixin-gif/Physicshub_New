@@ -1,11 +1,16 @@
 // ============================================================
-// РЕЗУЛЬТАТЫ ПОИСКА — рендер + фильтры
+// РЕЗУЛЬТАТЫ ПОИСКА — с фильтрами, сортировкой и группировкой
 // ============================================================
 
 import { searchArticles } from '../core/search.js';
 import { database } from '../data/database.js';
 import { clockIcon, bookIcon, telescopeIcon } from '../icons.js';
 import { isArticleRead } from '../core/progress.js';
+import {
+    renderGradeFilter,
+    countByGrade,
+    getGrade
+} from '../core/grade-filter.js';
 
 let activeCategory = 'all';
 
@@ -20,7 +25,7 @@ function filterByCategory(items, category) {
     return items.filter(a => a.category === category);
 }
 
-function renderFilters(categories, counts) {
+function renderCategoryFilters(categories, counts) {
     return `
     <div class="results-filters" id="resultsFilters">
       ${categories.map(cat => {
@@ -49,67 +54,136 @@ function countByCategory(items) {
     return counts;
 }
 
+// ============================================================
+// СОРТИРОВКА ПО ХРОНОЛОГИИ
+// ============================================================
+
+function sortByChronology(items) {
+    return [...items].sort((a, b) => {
+        const ga = a.grade || 7;
+        const gb = b.grade || 7;
+
+        if (ga !== gb) return ga - gb;
+
+        const oa = a.order || 999;
+        const ob = b.order || 999;
+
+        return oa - ob;
+    });
+}
+
+// ============================================================
+// ГЛАВНЫЙ РЕНДЕР
+// ============================================================
+
 export function renderResults(query) {
     const container = document.getElementById('results');
-    const allFound = searchArticles(query);
+    const q = query ? query.trim() : '';
 
-    if (!allFound.length) {
-        container.innerHTML = `
-      <div class="results-empty">
-        <div class="results-empty__icon">${telescopeIcon(80)}</div>
-        <h2 class="results-empty__title">Ничего не найдено по запросу «${query}»</h2>
-        <p class="results-empty__hint">Попробуй: гравитация, энергия, электричество...</p>
-      </div>
-    `;
-        return;
+    // Получаем статьи
+    let allFound;
+    if (!q) {
+        const grade = getGrade();
+        allFound = grade === 'all'
+            ? database
+            : database.filter(a => !a.grade || a.grade === grade);
+    } else {
+        allFound = searchArticles(q);
     }
+
+    // Сортируем по хронологии
+    allFound = sortByChronology(allFound);
 
     const categories = getCategories();
     const counts = countByCategory(allFound);
+    const gradeCounts = countByGrade(allFound);
     const filtered = filterByCategory(allFound, activeCategory);
 
     container.innerHTML = `
-    ${renderFilters(categories, counts)}
+    ${renderGradeFilter({ showCounts: gradeCounts })}
+    ${renderCategoryFilters(categories, counts)}
     <div class="results-list" id="resultsList">
       ${renderItems(filtered)}
     </div>
   `;
 
     bindFilterEvents(container, query);
+    bindGradeEvents(container, query);
 }
+
+// ============================================================
+// РЕНДЕР СПИСКА С ГРУППИРОВКОЙ ПО КЛАССАМ
+// ============================================================
 
 function renderItems(items) {
     if (!items.length) {
         return `
       <div class="results-empty" style="padding:40px 20px;">
-        <p class="results-empty__hint">В этой категории нет результатов.</p>
+        <p class="results-empty__hint">Ничего не найдено. Попробуй сменить класс или раздел.</p>
       </div>
     `;
     }
 
-    return items.map(item => {
-        const read = isArticleRead(item.id);
-        return `
-      <a class="result-item${read ? ' result-item--read' : ''}" data-id="${item.id}" href="#${item.id}">
-        <div class="result-title">
-          ${item.title}
-          ${read ? '<span class="result-read-mark" title="Прочитано">✓</span>' : ''}
-        </div>
-        <div class="result-desc">${item.desc}</div>
-        <div class="result-meta">
-          <span class="result-meta__item">${bookIcon(14)} ${item.category}</span>
-          <span class="result-meta__item">${clockIcon(14)} ${item.readTime}</span>
-        </div>
-      </a>
-    `;
+    // Группируем по классу
+    const byGrade = {};
+    items.forEach(item => {
+        const g = item.grade || 7;
+        if (!byGrade[g]) byGrade[g] = [];
+        byGrade[g].push(item);
+    });
+
+    const grades = Object.keys(byGrade).map(Number).sort((a, b) => a - b);
+
+    // Заголовки классов показываем только если классов больше одного
+    const showGradeHeaders = grades.length > 1;
+
+    return grades.map(g => {
+        const header = showGradeHeaders
+            ? `<div class="results-grade-header">🎓 ${g} класс</div>`
+            : '';
+
+        const itemsHtml = byGrade[g].map(item => {
+            const read = isArticleRead(item.id);
+            return `
+        <a class="result-item${read ? ' result-item--read' : ''}" data-id="${item.id}" href="#${item.id}">
+          <div class="result-title">
+            ${item.title}
+            ${read ? '<span class="result-read-mark" title="Прочитано">✓</span>' : ''}
+          </div>
+          <div class="result-desc">${item.desc}</div>
+          <div class="result-meta">
+            <span class="result-meta__item">${bookIcon(14)} ${item.category}</span>
+            <span class="result-meta__item">${clockIcon(14)} ${item.readTime}</span>
+          </div>
+        </a>
+      `;
+        }).join('');
+
+        return header + itemsHtml;
     }).join('');
 }
+
+// ============================================================
+// ОБРАБОТЧИКИ ФИЛЬТРОВ
+// ============================================================
 
 function bindFilterEvents(container, query) {
     container.querySelectorAll('.results-filter').forEach(btn => {
         btn.addEventListener('click', () => {
             activeCategory = btn.dataset.category;
             renderResults(query);
+        });
+    });
+}
+
+function bindGradeEvents(container, query) {
+    container.querySelectorAll('.grade-filter__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const val = btn.dataset.grade;
+            import('../core/grade-filter.js').then(({ setGrade }) => {
+                setGrade(val === 'all' ? 'all' : parseInt(val, 10));
+                renderResults(query);
+            });
         });
     });
 }

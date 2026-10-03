@@ -1,20 +1,35 @@
 // ============================================================
-// ПОИСК ПО БАЗЕ СТАТЕЙ
+// ПОИСК ПО БАЗЕ СТАТЕЙ + ФИЛЬТР ПО КЛАССУ
 // ============================================================
 
 import { database } from '../data/database.js';
+import { getGrade } from './grade-filter.js';
 
 export function searchArticles(query) {
     const q = query.toLowerCase().trim();
-    if (!q) return [];
+    const grade = getGrade();
 
-    const words = q.split(/\s+/).filter(Boolean);
+    let results;
 
-    return database
-        .map(article => ({ article, score: scoreArticle(article, words) }))
-        .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .map(item => item.article);
+    if (!q) {
+        // Пустой запрос — все статьи (с учётом класса)
+        results = database;
+    } else {
+        const words = q.split(/\s+/).filter(Boolean);
+
+        results = database
+            .map(article => ({ article, score: scoreArticle(article, words) }))
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .map(item => item.article);
+    }
+
+    // Фильтр по классу
+    if (grade !== 'all') {
+        results = results.filter(a => !a.grade || a.grade === grade);
+    }
+
+    return results;
 }
 
 function scoreArticle(article, words) {

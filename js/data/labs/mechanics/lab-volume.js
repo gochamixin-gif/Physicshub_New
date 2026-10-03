@@ -6,6 +6,7 @@ export const labVolume = {
     id: 'lab-volume',
     title: 'Измерение объёма тела',
     category: 'Взаимодействие тел',
+        grade: 7,
     topic: 'Объём',
     duration: '25 мин',
     level: 1,

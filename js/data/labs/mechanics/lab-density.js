@@ -6,6 +6,7 @@ export const labDensity = {
     id: 'lab-density',
     title: 'Определение плотности твёрдого тела',
     category: 'Взаимодействие тел',
+        grade: 7,
     topic: 'Плотность',
     duration: '35 мин',
     level: 2,

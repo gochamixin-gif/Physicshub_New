@@ -6,6 +6,7 @@ export const labEfficiency = {
     id: 'lab-efficiency',
     title: 'Определение КПД при подъёме тела по наклонной плоскости',
     category: 'Работа и энергия',
+        grade: 7,
     topic: 'КПД',
     duration: '35 мин',
     level: 3,

@@ -5,11 +5,13 @@
 import { mechanicsQuizzes } from './mechanics.js';
 import { generalQuizzes }   from './general.js';
 import { topicQuizzes }     from './topics.js';
+import { grade8Quizzes }    from './grade-8.js';
 
 export const quizDatabase = [
     ...mechanicsQuizzes,
     ...generalQuizzes,
-    ...topicQuizzes
+    ...topicQuizzes,
+    ...grade8Quizzes
 ];
 
 export function getQuizById(id) {

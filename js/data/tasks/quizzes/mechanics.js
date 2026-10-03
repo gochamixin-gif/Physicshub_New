@@ -10,6 +10,7 @@ export const mechanicsQuizzes = [
         id: 'quiz-speed',
         title: 'Скорость и путь',
         category: 'Механика',
+        grade: 7,
         topic: 'Скорость',
         level: 1,
         description: '5 вопросов на формулы скорости, пути и времени',

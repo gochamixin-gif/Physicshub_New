@@ -1,0 +1,206 @@
+/* ============================================================
+   ФИЛЬТР ПО КЛАССАМ
+   ============================================================ */
+
+.grade-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.4s ease;
+}
+
+.grade-filter__title {
+    font-size: 0.85rem;
+    color: var(--text-mute);
+    font-weight: 600;
+    margin-right: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.grade-filter__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--text-dim);
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.grade-filter__btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(124, 58, 237, 0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+}
+
+.grade-filter__btn:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: var(--accent);
+    color: var(--text);
+    transform: translateY(-2px);
+}
+
+.grade-filter__btn:hover::before { opacity: 1; }
+
+.grade-filter__btn--active {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(167, 139, 250, 0.2));
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    box-shadow:
+            inset 0 0 0 1px rgba(167, 139, 250, 0.4),
+            0 4px 16px rgba(124, 58, 237, 0.25);
+}
+
+.grade-filter__icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.grade-filter__label {
+    font-weight: 500;
+}
+
+.grade-filter__count {
+    padding: 1px 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.grade-filter__btn--active .grade-filter__count {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* Компактная версия */
+.grade-filter--compact {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+
+.grade-filter--compact .grade-filter__btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* ============================================================
+   ФИЛЬТР ПО КЛАССАМ НА ГЛАВНОЙ
+   ============================================================ */
+
+.intro-grades {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto 32px;
+    animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.intro-grade {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    font-family: inherit;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    min-width: 80px;
+}
+
+.intro-grade:hover {
+    transform: translateY(-3px);
+    background: rgba(124, 58, 237, 0.1);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.intro-grade--active {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.3), rgba(167, 139, 250, 0.2));
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow:
+            inset 0 0 0 1px rgba(167, 139, 250, 0.4),
+            0 8px 24px rgba(124, 58, 237, 0.3);
+}
+
+.intro-grade__num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1;
+    font-family: var(--font-mono);
+}
+
+.intro-grade--active .intro-grade__num {
+    color: #fff;
+}
+
+.intro-grade__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+
+@media (max-width: 700px) {
+    .grade-filter {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .grade-filter__btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+    }
+
+    .grade-filter__title { display: none; }
+
+    .intro-grades {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .intro-grade {
+        min-width: 70px;
+        padding: 10px 14px;
+        flex-shrink: 0;
+    }
+
+    .intro-grade__num { font-size: 1.1rem; }
+    .intro-grade__label { font-size: 0.65rem; }
+}

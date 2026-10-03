@@ -6,6 +6,7 @@ export const labMassScales = {
     id: 'lab-mass-scales',
     title: 'Измерение массы тела на рычажных весах',
     category: 'Взаимодействие тел',
+        grade: 7,
     topic: 'Масса',
     duration: '25 мин',
     level: 1,

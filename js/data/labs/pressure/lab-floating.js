@@ -6,6 +6,7 @@ export const labFloating = {
     id: 'lab-floating',
     title: 'Выяснение условия плавания тела в жидкости',
     category: 'Давление',
+        grade: 7,
     topic: 'Плавание тел',
     duration: '35 мин',
     level: 2,

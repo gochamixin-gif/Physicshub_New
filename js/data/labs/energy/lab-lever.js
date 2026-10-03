@@ -6,6 +6,7 @@ export const labLever = {
     id: 'lab-lever',
     title: 'Выяснение условия равновесия рычага',
     category: 'Работа и энергия',
+        grade: 7,
     topic: 'Рычаг',
     duration: '35 мин',
     level: 2,

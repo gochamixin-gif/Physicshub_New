@@ -6,6 +6,7 @@ export const densityTasks = [
     {
         id: 'density-1',
         category: 'Механика',
+        grade: 7,
         topic: 'Плотность',
         level: 1,
         task: 'Брусок массой 540 г имеет объём 200 см³. Найти плотность вещества.',

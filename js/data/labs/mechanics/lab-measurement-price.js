@@ -6,6 +6,7 @@ export const labMeasurementPrice = {
     id: 'lab-measurement-price',
     title: 'Определение цены деления измерительного прибора',
     category: 'Введение в физику',
+        grade: 7,
     topic: 'Измерения',
     duration: '30 мин',
     level: 1,

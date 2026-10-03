@@ -6,6 +6,7 @@ export const labDynamometer = {
     id: 'lab-dynamometer',
     title: 'Градуирование пружины и измерение сил динамометром',
     category: 'Взаимодействие тел',
+        grade: 7,
     topic: 'Сила',
     duration: '40 мин',
     level: 2,

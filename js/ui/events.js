@@ -28,28 +28,24 @@ import {
 } from './search-suggestions.js';
 import { getRandomArticle } from './hero.js';
 import { state } from '../core/state.js';
+import { setGrade } from '../core/grade-filter.js';
 
 let debounceTimer;
 
 export function initEvents() {
 
-    // ============================================================
-    // ВВОД В ПОИСК + ЖИВЫЕ ПОДСКАЗКИ
-    // ============================================================
     document.addEventListener('input', e => {
         if (!e.target.classList.contains('site-search__input')) return;
 
         clearTimeout(debounceTimer);
         const q = e.target.value.trim();
 
-        // Подсказки появляются сразу
         if (q.length >= 2) {
             renderSuggestions(q);
         } else {
             hideSuggestions();
         }
 
-        // Основной поиск — с задержкой
         debounceTimer = setTimeout(() => {
             if (!q) {
                 hideSuggestions();
@@ -64,26 +60,16 @@ export function initEvents() {
         }, 250);
     });
 
-    // ============================================================
-    // КЛАВИАТУРА В ПОИСКЕ
-    // ============================================================
     document.addEventListener('keydown', e => {
         if (!e.target.classList.contains('site-search__input')) return;
-
-        // Навигация в подсказках (↑ ↓ Enter Esc)
         if (handleSuggestionsKey(e)) return;
     });
 
-    // ============================================================
-    // КЛИКИ
-    // ============================================================
     document.addEventListener('click', e => {
 
         // ============================================================
         // ПОДСКАЗКИ ПОИСКА
         // ============================================================
-
-        // --- Клик по подсказке ---
         const suggestionItem = e.target.closest('.search-suggestions__item');
         if (suggestionItem) {
             e.preventDefault();
@@ -111,7 +97,6 @@ export function initEvents() {
             return;
         }
 
-        // --- «Показать все результаты» ---
         if (e.target.closest('[data-show-all]')) {
             e.preventDefault();
             const input = document.getElementById('search');
@@ -125,7 +110,6 @@ export function initEvents() {
             return;
         }
 
-        // --- Клик вне поиска — закрыть подсказки ---
         if (!e.target.closest('.site-search')) {
             hideSuggestions();
         }
@@ -175,6 +159,30 @@ export function initEvents() {
         // ЭНЦИКЛОПЕДИЯ
         // ============================================================
 
+        // --- Класс на главной ---
+        const gradeBtn = e.target.closest('.intro-grade');
+        if (gradeBtn) {
+            e.preventDefault();
+            const val = gradeBtn.dataset.grade;
+
+            setGrade(parseInt(val, 10));
+
+            document.querySelectorAll('.intro-grade').forEach(b => {
+                b.classList.toggle('intro-grade--active', b.dataset.grade === val);
+            });
+            return;
+        }
+
+        // --- Кнопка «Все темы» ---
+        if (e.target.closest('[data-show-all-topics]')) {
+            e.preventDefault();
+            resetFilter();
+            showResults('');
+            renderResults('');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
         // --- Кнопка «Справочник СИ» ---
         const ctaBtn = e.target.closest('[data-open-article]');
         if (ctaBtn) {
@@ -182,6 +190,36 @@ export function initEvents() {
             const id = ctaBtn.dataset.openArticle;
             showArticle(id);
             renderArticle(id);
+            return;
+        }
+
+        // --- Счётчики на главной ---
+        const stat = e.target.closest('.intro-stat');
+        if (stat) {
+            e.preventDefault();
+            const nav = stat.dataset.nav;
+
+            if (nav === 'tasks') {
+                resetTaskFilter();
+                showTasks();
+                renderTasks();
+            } else if (nav === 'quizzes') {
+                resetQuizFilter();
+                showQuizzes();
+                renderQuizzes();
+            } else if (nav === 'labs') {
+                resetLabFilter();
+                showLabs();
+                renderLabs();
+            } else {
+                const sections = document.querySelector('.sections');
+                if (sections) {
+                    window.scrollTo({
+                        top: sections.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
             return;
         }
 
@@ -318,7 +356,7 @@ export function initEvents() {
     // ============================================================
     document.addEventListener('click', e => {
         const btn = e.target.closest(
-            '.site-btn, .quiz-btn, .task-action, .article-print-btn, .article-read-btn, .task-answer-input__btn, .intro-cta'
+            '.site-btn, .quiz-btn, .task-action, .article-print-btn, .article-read-btn, .task-answer-input__btn, .intro-cta, .intro-stat, .intro-grade, .all-topics-btn'
         );
         if (!btn) return;
 
@@ -328,7 +366,7 @@ export function initEvents() {
     });
 
     // ============================================================
-    // ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ (обновление при навигации)
+    // ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
     // ============================================================
     document.addEventListener('click', () => {
         setTimeout(() => {

@@ -6,6 +6,7 @@ export const labSmallBodies = {
     id: 'lab-small-bodies',
     title: 'Измерение размеров малых тел',
     category: 'Строение вещества',
+        grade: 7,
     topic: 'Измерения',
     duration: '25 мин',
     level: 1,

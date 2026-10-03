@@ -2,13 +2,17 @@
 // РЕЕСТР: ЗАДАЧИ + ТЕСТЫ
 // ============================================================
 
-// --- Задачи ---
+// --- Задачи 7 класса ---
 import { speedTasks }      from './mechanics/speed.js';
 import { massTasks }       from './mechanics/mass.js';
 import { densityTasks }    from './mechanics/density.js';
 import { pressureTasks }   from './pressure/pressure.js';
 import { workTasks }       from './energy/work.js';
 import { extraTasks }      from './mixed/tasks-10.js';
+
+// --- Задачи 8 класса ---
+import { grade8Tasks }     from './mixed/grade-8-tasks.js';
+import { grade8Tasks2 }    from './mixed/grade-8-tasks-2.js';
 
 // --- Тесты ---
 export {
@@ -25,7 +29,9 @@ export const taskDatabase = [
     ...densityTasks,
     ...pressureTasks,
     ...workTasks,
-    ...extraTasks
+    ...extraTasks,
+    ...grade8Tasks,
+    ...grade8Tasks2
 ];
 
 export function getTaskById(id) {

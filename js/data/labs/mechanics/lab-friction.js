@@ -6,6 +6,7 @@ export const labFriction = {
     id: 'lab-friction',
     title: 'Измерение силы трения с помощью динамометра',
     category: 'Взаимодействие тел',
+        grade: 7,
     topic: 'Трение',
     duration: '35 мин',
     level: 2,

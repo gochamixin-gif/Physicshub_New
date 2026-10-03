@@ -10,6 +10,7 @@ export const topicQuizzes = [
         id: 'quiz-matter',
         title: 'Строение вещества',
         category: 'Строение вещества',
+        grade: 7,
         topic: 'Молекулы',
         level: 1,
         description: '5 вопросов о молекулах, атомах и диффузии',

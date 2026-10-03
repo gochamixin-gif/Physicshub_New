@@ -6,6 +6,7 @@ export const massTasks = [
     {
         id: 'mass-1',
         category: 'Механика',
+        grade: 7,
         topic: 'Масса',
         level: 1,
         task: 'На левой чашке весов тело. На правой гири: 50 г, 20 г, 2 г и 500 мг. Найти массу тела.',
